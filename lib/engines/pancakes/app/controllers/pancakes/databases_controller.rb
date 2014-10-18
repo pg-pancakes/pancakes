@@ -1,5 +1,5 @@
 module Pancakes
-  class DatabasesController < ApplicationController
+  class DatabasesController < Pancakes::ApplicationController
     def show
       @tables = connection.tables
     end

@@ -1,5 +1,5 @@
 module Pancakes
-  class TablesController < ApplicationController
+  class TablesController < Pancakes::ApplicationController
     def show
       @tables  = connection.tables
       @table   = @tables.find { |table| table.name == params[:id] }
