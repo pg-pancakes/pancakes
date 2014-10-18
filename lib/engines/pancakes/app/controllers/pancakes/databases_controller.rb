@@ -1,7 +1,8 @@
 module Pancakes
   class DatabasesController < ApplicationController
     def show
-      # connect to pg/database/:database
+      connection = Pancakes.connect(database: params[:id])
+      connection.exec("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
     end
 
     def index
