@@ -10,5 +10,11 @@ html
   body
     = render 'shared/header'
 
+    #wrapper
+      #sidebar-wrapper
+        ul.sidebar-nav
+          - @tables.each do |table|
+            li
+              = link_to table.name, database_table(id: table.id)
     .container
       = yield
