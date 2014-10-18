@@ -3,7 +3,7 @@ default: &default
   pool: 5
   timeout: 5000
   host: localhost
-  username: root
+  username: postgres
 
 development:
   <<: *default
