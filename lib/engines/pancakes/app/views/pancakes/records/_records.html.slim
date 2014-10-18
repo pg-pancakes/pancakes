@@ -1,2 +1,10 @@
 - records.each do |record|
-  = render 'pancakes/records/record', record: record
+  - if editable
+    tr
+      - record.each do |key, value|
+        td class="existing-value" data-attribute="#{key}" contenteditable="true"= value.try(:html_safe)
+
+  - else
+    tr
+      - record.each_value do |value|
+        td= value

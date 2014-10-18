@@ -39,4 +39,4 @@
             - @columns.each do |column|
               td= column["column_name"]
         tbody
-          = render 'pancakes/records/records', records: @records
+          = render 'pancakes/records/records', records: @records, editable: true
