@@ -1,4 +1,5 @@
 require "rails"
+require "net/ssh/gateway" 
 require "pancakes/engine"
 require "pancakes/database/connection"
 
@@ -24,6 +25,9 @@ module Pancakes
   mattr_accessor :connection
   @@connection = nil
 
+  mattr_accessor :gateway
+  @@gateway = nil
+
   mattr_accessor :environments
   @@environments = Dir.glob("./config/environments/*.rb").map { |filename| File.basename(filename, ".rb") }
 
@@ -32,9 +36,13 @@ module Pancakes
   ###############
 
   def self.connect options={}
+    # Read configuration
     databases = read_configuration || {}
-    database = databases[options[:database] || Rail.env]
+    database = databases[options[:database].to_s || Rails.env]
     database = database.merge(options)
+    # Tunnel SSH
+    #Pancakes.gateway = Net::SSH::Gateway.new("host","user",{:verbose => :debug})
+    # Connect to DB
     Pancakes.connection = PG::Connection.new(
       host: database["host"],
       hostaddr: database["hostaddr"],
