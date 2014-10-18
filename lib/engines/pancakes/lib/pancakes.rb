@@ -4,9 +4,9 @@ require "pancakes/database/connection"
 
 module Pancakes
 
-	#####################
-	### CONFIGURATION ###
-	#####################
+  #####################
+  ### CONFIGURATION ###
+  #####################
 
   def self.setup
     yield self
@@ -31,8 +31,39 @@ module Pancakes
   ### METHODS ###
   ###############
 
-  def read_configuration
-  	
+  def self.connect options={}
+    databases = read_configuration || {}
+    database = databases[options[:database] || Rail.env]
+    database = database.merge(options)
+    Pancakes.connection = PG::Connection.new(
+      host: database["host"],
+      hostaddr: database["hostaddr"],
+      port: database["port"],
+      dbname: database["database"],
+      user: database["username"],
+      password: database["password"],
+      #connection_timeout: database["timeout"],
+      #options: database["options"],
+      #tty: database["tty"],
+      #sslmode: database["sslmode"],
+      #gsslib: database["gsslib"],
+      #service: database["service"],
+    )
   end
+
+  def self.read_configuration
+    database_yaml_path = "./config/database.yml"
+    enviroments_path = "./config/environments"
+    databases = (File.exists?(database_yaml_path) && YAML.load_file(database_yaml_path)) || {}
+    configuration = (File.exists?(Pancakes.config_file_path) && YAML.load_file(Pancakes.config_file_path)) || {}
+    enviroments = Dir.glob("#{enviroments_path}/*.rb").map { |filename| File.basename(filename, ".rb") }
+    databases = databases.merge configuration
+    databases.keys.each do |database|
+      databases.delete(database) unless enviroments.include? database
+    end
+    databases
+  end
+
+
 
 end
