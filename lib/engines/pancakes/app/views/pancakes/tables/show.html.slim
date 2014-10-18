@@ -1,5 +1,5 @@
 .sql-query
-  .row.sql-query-terminal
+  .row.sql-query-console
     .col-sm-12
       = form_tag query_database_path(database.name), remote: true, class: 'sql-query' do
         = text_area_tag(:sql_command)
@@ -9,6 +9,11 @@
         br
   .row.sql-query-output
     .col-sm-12
+      .table-responsive.sql-query-output-table
+        table.table.table-hover.table-bordered
+          thead
+          tbody
+      .errors
 
 .row.table-structure
   .col-sm-12
@@ -37,10 +42,4 @@
             - @columns.each do |column|
               td= column["column_name"]
         tbody
-          tr
-            - @records.first.keys.each do |table_attribute|
-              td class="#{table_attribute}" contenteditable="true"
-          - @records.each do |record|
-            tr
-              - record.each do |key, value|
-                td class="existing-value" data-attribute="#{key}" contenteditable="true" = value.try(:html_safe)
+          = render 'pancakes/records/records', records: @records

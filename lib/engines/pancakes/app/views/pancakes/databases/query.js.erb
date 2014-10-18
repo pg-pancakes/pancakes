@@ -1,1 +1,12 @@
-alert( 'egzekjutao sam')
+$('.sql-query-output thead' ).empty();
+$('.sql-query-output tbody' ).empty();
+$('.sql-query-output .errors').empty();
+
+<% if @result %>
+  <% if @result.any? %>
+    $(".sql-query-output thead").append("<%= j render('pancakes/tables/header_keys', header_keys: @result.first.keys) %>");
+    $(".sql-query-output tbody").append("<%= j render('pancakes/records/records', records: @result) %>");
+  <% end %>
+<% else %>
+    $(".sql-query-output .errors").append("<h3>Error:</h3><p><%= j @error.message %></p>");
+<% end %>
