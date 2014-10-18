@@ -13,6 +13,8 @@ gem "bootstrap-sass"
 gem "simple_form"
 gem "slim-rails"
 gem "draper"
+gem "devise"
+
 group :development do
   gem "spring"
   gem "better_errors"
