@@ -1,6 +1,7 @@
+require "rails"
 require "pancakes/engine"
 require "pancakes/config"
-require "rails"
+require "pancakes/database/connection"
 
 module Pancakes
 end

@@ -13,4 +13,7 @@ module Pancakes
   mattr_accessor :config_file_path
   @@config_file_path = "/config/pancakes.yml"
 
+  mattr_accessor :connection
+  @@connection = nil
+
 end
