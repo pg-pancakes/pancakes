@@ -12,31 +12,34 @@
           tbody
       .errors
 
-.row.table-structure
-  .col-sm-12
-    .table-responsive
-      table.table.table-hover.table-bordered
-        thead
-          tr
-            td Field
-            td Type
-            td Max Length
-            td Allow Null
-        tbody
-          - @schema.each do |column|
-            tr
-              td= column['column_name']
-              td= column['data_type']
-              td= column['character_maximum_length']
-              td= boolean_glyphicon(column['is_nullable'])
+.tab-content
+  .tab-pane.table-structure
+    .row
+      .col-sm-12
+        .table-responsive
+          table.table.table-hover.table-bordered
+            thead
+              tr
+                td Field
+                td Type
+                td Max Length
+                td Allow Null
+            tbody
+              - @schema.each do |column|
+                tr
+                  td= column['column_name']
+                  td= column['data_type']
+                  td= column['character_maximum_length']
+                  td= boolean_glyphicon(column['is_nullable'])
 
-.row.table-content
-  .col-sm-12
-    .table-responsive
-      table.table.table-hover.table-bordered data-database-name="#{database.name}" data-table-name="#{@table.name}"
-        thead
-          tr
-            - @columns.each do |column|
-              td= column["column_name"]
-        tbody
-          = render 'pancakes/records/records', records: @records, editable: true
+  .tab-pane.table-content.active
+    .row
+      .col-sm-12
+        .table-responsive
+          table.table.table-hover.table-bordered data-database-name="#{database.name}" data-table-name="#{@table.name}"
+            thead
+              tr
+                - @columns.each do |column|
+                  td= column["column_name"]
+            tbody
+              = render 'pancakes/records/records', records: @records

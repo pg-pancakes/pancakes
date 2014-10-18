@@ -13,11 +13,11 @@
                 = link_to database_path(id: environment) do
                   = environment.capitalize
         li.action-tab
-          = link_to "#structure" do
+          = link_to "#structure", data: { toggle: "tab", target: ".tab-pane.table-structure"} do
             i.fa.fa-newspaper-o
             |Structure
         li.action-tab
-          = link_to "#content" do
+          = link_to "#content", data: { toggle: "tab", target: ".tab-pane.table-content"} do
             i.fa.fa-archive
             |Content
         li.action-tab
