@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
+  root to: "posts#index"
+
   resources :posts
-
-  root to: "users#index"
-
   resources :users
 
   mount Pancakes::Engine, at: "/pg"
