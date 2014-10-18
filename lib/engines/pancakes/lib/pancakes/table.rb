@@ -11,11 +11,15 @@ module Pancakes
     end
 
     def records
-      Pancakes.connection.exec "SELECT * FROM #{name}"
+      Pancakes.connection.records(name)
     end
 
     def columns
-      Pancakes.connection.exec "SELECT column_name FROM information_schema.columns WHERE table_name = '#{name}'"
+      Pancakes.connection.columns(name)
+    end
+
+    def insert(attributes)
+      Pancakes.connection.insert(table_name, attributes)
     end
   end
 end
