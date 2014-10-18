@@ -51,6 +51,10 @@ module Pancakes
       #gsslib: database_config["gsslib"],
       #service: database_config["service"]
     }
+    Logger.new(STDOUT).info("-------------")
+    Logger.new(STDOUT).info(connection_hash)
+    Logger.new(STDOUT).info("-------------")
+
 
     Pancakes.connection = Pancakes::Connection.new(connection_hash)
   end
