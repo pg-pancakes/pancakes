@@ -26,5 +26,9 @@ module Pancakes
     def columns(table_name)
       exec("SELECT column_name FROM information_schema.columns WHERE table_name = '#{table_name}'")
     end
+
+    def schema_query(table_name)
+      exec("select column_name, data_type, character_maximum_length, is_nullable from INFORMATION_SCHEMA.COLUMNS where table_name = '#{table_name}';")
+    end
   end
 end

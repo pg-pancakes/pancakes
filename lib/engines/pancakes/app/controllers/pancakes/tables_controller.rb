@@ -5,6 +5,7 @@ module Pancakes
       @table   = @tables.find { |table| table.name == params[:id] }
       @records = @table.records
       @columns = @table.columns
+      @schema  = @table.schema
     end
 
     private

@@ -21,5 +21,9 @@ module Pancakes
     def insert(attributes)
       Pancakes.connection.insert(table_name, attributes)
     end
+
+    def schema
+      Pancakes.connection.schema_query(name)
+    end
   end
 end
