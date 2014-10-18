@@ -4,6 +4,10 @@ require "pancakes/database/connection"
 
 module Pancakes
 
+	#####################
+	### CONFIGURATION ###
+	#####################
+
   def self.setup
     yield self
   end
@@ -22,4 +26,13 @@ module Pancakes
 
   mattr_accessor :environments
   @@environments = Dir.glob("./config/environments/*.rb").map { |filename| File.basename(filename, ".rb") }
+
+  ###############
+  ### METHODS ###
+  ###############
+
+  def read_configuration
+  	
+  end
+
 end
