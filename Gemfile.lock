@@ -2,6 +2,7 @@ PATH
   remote: lib/engines/pancakes
   specs:
     pancakes (0.0.1)
+      jquery-rails
       net-ssh-gateway
       rails (~> 4.1.6)
 
