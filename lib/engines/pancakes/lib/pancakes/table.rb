@@ -19,7 +19,11 @@ module Pancakes
     end
 
     def insert(attributes)
-      Pancakes.connection.insert(table_name, attributes)
+      Pancakes.connection.insert(name, attributes)
+    end
+
+    def update(id, attributes)
+      Pancakes.connection.update(name, id, attributes)
     end
 
     def schema

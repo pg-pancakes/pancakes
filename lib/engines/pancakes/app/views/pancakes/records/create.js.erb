@@ -1,0 +1,5 @@
+<% if response.status == 200 %>
+  $("#new_record").replaceWith("<%= j render(@record) %>")
+<% else %>
+  console.alert("The record is invalid")
+<% end %>

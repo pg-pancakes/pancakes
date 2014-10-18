@@ -25,10 +25,7 @@
             - @columns.each do |column|
               td= column["column_name"]
         tbody
-          - @records.each do |record|
-            tr
-              - record.each_value do |value|
-                td= value
+          = render @records
 
 .row.sql-query
   .col-sm-12
