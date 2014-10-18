@@ -28,6 +28,9 @@ module Pancakes
   mattr_accessor :gateway
   @@gateway = nil
 
+  mattr_accessor :gateway_port
+  @@gateway_port = nil
+
   mattr_accessor :environments
   @@environments = Dir.glob("./config/environments/*.rb").map { |filename| File.basename(filename, ".rb") }
 
@@ -41,6 +44,7 @@ module Pancakes
     database = databases[options[:database].to_s || Rails.env]
     database = database.merge(options)
     # Tunnel SSH
+    #if Pancakes.
     #Pancakes.gateway = Net::SSH::Gateway.new("host","user",{:verbose => :debug})
     # Connect to DB
     Pancakes.connection = PG::Connection.new(
