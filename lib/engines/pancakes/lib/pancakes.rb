@@ -2,7 +2,7 @@ require "active_support/core_ext/module/attribute_accessors"
 require "net/ssh/gateway"
 require "pancakes/engine"
 require "pancakes/connection"
-require "pancakes/database/connection"
+require "pancakes/database"
 
 module Pancakes
 
