@@ -1,3 +1,9 @@
+PATH
+  remote: lib/engines/pancakes
+  specs:
+    pancakes (0.0.1)
+      rails (~> 4.1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -165,6 +171,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener
+  pancakes!
   pg
   pry-rails
   quiet_assets

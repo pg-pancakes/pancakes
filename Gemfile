@@ -23,3 +23,5 @@ group :development do
   gem "traceroute"
   gem "letter_opener"
 end
+
+gem "pancakes", path: "lib/engines/pancakes"
