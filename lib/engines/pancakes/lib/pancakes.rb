@@ -33,12 +33,8 @@ module Pancakes
 
   def self.connect options={}
     # Read configuration
-    environment = options[:database].to_s || Rails.env
-    database_config = configurations[environment].merge(options)
-    # Tunnel SSH
-    #if Pancakes.
-    #Pancakes.gateway = Net::SSH::Gateway.new("host","user",{:verbose => :debug})
-    # Connect to DB
+    environment = options[:database] || Rails.env
+    database_config = configurations[environment.to_s].merge(options)
 
     connection_hash = {
       host:     database_config["host"],
