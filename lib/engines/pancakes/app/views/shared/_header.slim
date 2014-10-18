@@ -1,0 +1,18 @@
+header.navbar.navbar-default
+  .container-fluid
+    nav
+      ul.nav.navbar-nav
+        li.dropdown
+          a href="#" class="dropdown-toggle" data-toggle="dropdown"
+            | #{params[:id].capitalize}
+            span.caret
+          ul.dropdown-menu role="menu"
+            - Pancakes.environments.each do |environment|
+              li
+                = link_to environment.capitalize, database_path(id: environment)
+        li
+          a href="#" Structure
+        li
+          a href="#" Content
+        li
+          a href="#" SQL Console
