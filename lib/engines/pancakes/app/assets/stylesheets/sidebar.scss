@@ -28,6 +28,10 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
+.main-container{
+    margin-left: 250px;
+    padding-left: 0px;
+}
 
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;

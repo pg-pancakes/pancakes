@@ -16,5 +16,5 @@ html
           - @tables.collect(&:name).each do |table_name|
             li
               = link_to table_name, database_table_path(database.name, table_name)
-    .container
+    .container.main-container
       = yield
