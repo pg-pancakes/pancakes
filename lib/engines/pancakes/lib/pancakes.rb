@@ -3,6 +3,7 @@ require "net/ssh/gateway"
 require "pancakes/engine"
 require "pancakes/connection"
 require "pancakes/database"
+require "pancakes/record"
 
 module Pancakes
 
