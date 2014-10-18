@@ -26,3 +26,4 @@ group :development do
 end
 
 gem "pancakes", path: "lib/engines/pancakes"
+gem "faker"
