@@ -12,10 +12,10 @@ html
 
     #wrapper
       #sidebar-wrapper
-        ul.sidebar-nav
+        ul.sidebar-nav.tables
           - if @tables.any?
             - @tables.collect(&:name).each do |table_name|
-              li
+              li class="#{(params[:id] == table_name) ? 'active' : ''}"
                 = link_to table_name, database_table_path(database.name, table_name)
           - else
             li No tables

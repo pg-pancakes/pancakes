@@ -10,9 +10,15 @@
             - Pancakes.environments.each do |environment|
               li
                 = link_to environment.capitalize, database_path(id: environment)
-        li
-          a href="#" Structure
-        li
-          a href="#" Content
-        li
-          a href="#" SQL Console
+        li.action-tab
+          = link_to "#structure" do
+            i.fa.fa-table
+            |Structure
+        li.action-tab
+          = link_to "#content" do
+            i.fa.fa-archive
+            |Content
+        li.action-tab
+          = link_to "#console" do
+            i.fa.fa-terminal
+            |Console

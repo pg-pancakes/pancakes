@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.1.6"
   s.add_dependency "net-ssh-gateway"
+  s.add_dependency "bootstrap-sass"
+  s.add_dependency "font-awesome-sass"
 
   s.add_development_dependency "pg"
 end

@@ -1,5 +1,19 @@
+/* List Styles */
+ul.tables {
+    li {
+        &.active {
+            background-color: $gray-lighter;
+        }
+    }
+}
 
 /* Toggle Styles */
+
+.main-container{
+    margin-left: 250px;
+    padding-left: 0px;
+    margin-top: 1px;
+}
 
 #wrapper {
     padding-left: 0;
@@ -8,10 +22,16 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-}
-
-#wrapper.toggled {
-    padding-left: 250px;
+    &.toggled {
+        padding-left: 250px;
+        #sidebar-wrapper {
+            width: 250px;
+        }
+        #page-content-wrapper {
+            position: absolute;
+            margin-right: -250px;
+        }
+    }
 }
 
 #sidebar-wrapper {
@@ -28,24 +48,10 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-.main-container{
-    margin-left: 250px;
-    padding-left: 0px;
-    margin-top: 1px;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-}
 
 #page-content-wrapper {
     width: 100%;
     padding: 15px;
-}
-
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
 }
 
 /* Sidebar Styles */
