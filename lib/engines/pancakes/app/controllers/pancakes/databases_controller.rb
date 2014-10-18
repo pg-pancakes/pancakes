@@ -8,6 +8,14 @@ module Pancakes
       redirect_to database_path(Rails.env)
     end
 
+    def query
+      begin
+        database.exec_query(params[:sql_command])
+      rescue PG::Error => e
+
+      end
+    end
+
     private
 
     def database
