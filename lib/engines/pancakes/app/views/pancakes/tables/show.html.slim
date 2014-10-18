@@ -1,0 +1,16 @@
+.row
+  .col-sm-2
+    ul
+      = render @tables
+  .col-sm-10
+    .table-responsive
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            - @columns.each do |column|
+              td= column["column_name"]
+        tbody
+          - @records.each do |record|
+            tr
+              - record.each_value do |value|
+                td= value

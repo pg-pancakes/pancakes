@@ -1,6 +1,7 @@
 require "active_support/core_ext/module/attribute_accessors"
 require "net/ssh/gateway"
 require "pancakes/engine"
+require "pancakes/connection"
 require "pancakes/database/connection"
 
 module Pancakes
@@ -54,7 +55,7 @@ module Pancakes
       #service: database_config["service"]
     }
 
-    Pancakes.connection = PG::Connection.new(connection_hash)
+    Pancakes.connection = Pancakes::Connection.new(connection_hash)
   end
 
   def self.configurations

@@ -1,0 +1,1 @@
+li= link_to_unless current_page?(table_id: table.name), table.name, database_table_path(params[:database_id] || params[:id], table.name)
