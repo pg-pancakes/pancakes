@@ -4,6 +4,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    Rails.logger.info("-------------------------------------")
+    Rails.logger.info(Pancakes.configurations[Rails.env.to_s])
+    Rails.logger.info("-------------------------------------")
+
     @posts = Post.all
   end
 
