@@ -42,5 +42,36 @@ module Pancakes
     def delete(table_name, id)
       exec("DELETE FROM #{table_name} WHERE id = #{id}")
     end
+
+    def initialize_ssh options={}
+
+      # Determine port if needed
+      unless options["database_port"]
+        options["database_port"] = 64999
+        begin
+          server = TCPServer.new('127.0.0.1', options["database_port"])
+          server.close
+        rescue Errno::EADDRINUSE
+          options["database_port"] = rand(65000 - 1024) + 1024
+          retry
+        end
+      end
+
+      # Build SSH command
+      command = "ssh -f"
+      command += " -#{options["force_version"]}" if options["force_version"]
+      command += " -#{options["ip_version"]}" if options["ip_version"]
+      command += " #{options["username"]}@#{options["host"]}"
+      command += " -L #{options["database_port"]}:#{options["host"]}:#{options["port"] || 22}"
+      command += " -p #{options["port"] || 22}"
+      command += " -N"
+
+      # Execute SSH command with password
+      command = "expect -c 'spawn #{command}; match_max 100000; expect \"*?assword:*\"; send -- \"#{options["password"]}\r\"; send -- \"\r\"; interact;'" if options["password"]
+      p = system command
+      #binding.pry
+
+      self.forwarded_port = options["database_port"]
+    end
   end
 end
