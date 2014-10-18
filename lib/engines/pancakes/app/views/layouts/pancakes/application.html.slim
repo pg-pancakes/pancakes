@@ -13,8 +13,8 @@ html
     #wrapper
       #sidebar-wrapper
         ul.sidebar-nav
-          - @tables.each do |table|
+          - @tables.collect(&:name).each do |table_id|
             li
-              = link_to table.name, database_table(id: table.id)
+              = link_to table_id, database_table_path(table_id, params[:id])
     .container
       = yield
