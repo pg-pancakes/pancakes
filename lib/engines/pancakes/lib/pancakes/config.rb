@@ -7,4 +7,10 @@ module Pancakes
   mattr_accessor :standalone
   @@standalone = false
 
+  mattr_accessor :ssh_credentials
+  @@ssh_credentials = {}
+
+  mattr_accessor :config_file_path
+  @@config_file_path = "/config/pancakes.yml"
+
 end
