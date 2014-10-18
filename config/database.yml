@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  host: localhost
+  username: root
+
+development:
+  <<: *default
+  database: kerohu_development
+  password:
+
+test:
+  <<: *default
+  database: kerohu_test
+
+production:
+  <<: *default
+  database: kerohu_production
