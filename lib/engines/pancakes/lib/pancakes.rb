@@ -34,6 +34,12 @@ module Pancakes
   mattr_accessor :environments
   @@environments = Dir.glob("./config/environments/*.rb").map { |filename| File.basename(filename, ".rb") }
 
+  mattr_writer :environments
+
+  def self.environments
+    @environments ||= Dir.glob("./config/environments/*.rb").map { |filename| File.basename(filename, ".rb") }
+  end
+
   ###############
   ### METHODS ###
   ###############
@@ -68,14 +74,11 @@ module Pancakes
     enviroments_path = "./config/environments"
     databases = (File.exists?(database_yaml_path) && YAML.load_file(database_yaml_path)) || {}
     configuration = (File.exists?(Pancakes.config_file_path) && YAML.load_file(Pancakes.config_file_path)) || {}
-    enviroments = Dir.glob("#{enviroments_path}/*.rb").map { |filename| File.basename(filename, ".rb") }
     databases = databases.merge configuration
     databases.keys.each do |database|
-      databases.delete(database) unless enviroments.include? database
+      databases.delete(database) unless environments.include? database
     end
     databases
   end
-
-
 
 end
