@@ -1,18 +1,19 @@
-.sql-query
-  .row.sql-query-console
-    .col-sm-12
-      = form_tag query_database_path(database.name), remote: true, class: 'sql-query' do
-        = text_area_tag(:sql_command)
-        = submit_tag 'Execute Query', class: 'btn btn-primary pull-right'
-  .row.sql-query-output
-    .col-sm-12
-      .table-responsive.sql-query-output-table
-        table.table.table-hover.table-bordered
-          thead
-          tbody
-      .errors
-
 .tab-content
+  .tab-pane.sql-query
+    .row.sql-query-console
+      .col-sm-12
+        = form_tag query_database_path(database.name), remote: true, class: 'sql-query' do
+          = text_area_tag(:sql_command)
+          = submit_tag 'Execute Query', class: 'btn btn-primary pull-right'
+    .row.sql-query-output
+      .col-sm-12
+        .table-responsive.sql-query-output-table
+          table.table.table-hover.table-bordered
+            thead
+            tbody
+        .errors.alert-danger
+
+
   .tab-pane.table-structure
     .row
       .col-sm-12
@@ -42,4 +43,4 @@
                 - @columns.each do |column|
                   td= column["column_name"]
             tbody
-              = render 'pancakes/records/records', records: @records
+              = render 'pancakes/records/records', records: @records, editable: true

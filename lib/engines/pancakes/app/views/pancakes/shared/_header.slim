@@ -21,6 +21,6 @@
             i.fa.fa-archive
             |Content
         li.action-tab
-          = link_to "#console" do
+          = link_to "#console", data: { toggle: "tab", target: ".tab-pane.sql-query"} do
             i.fa.fa-terminal
             |Console
