@@ -3,10 +3,7 @@
     .col-sm-12
       = form_tag query_database_path(database.name), remote: true, class: 'sql-query' do
         = text_area_tag(:sql_command)
-        br
         = submit_tag 'Execute Query', class: 'btn btn-primary pull-right'
-        br
-        br
   .row.sql-query-output
     .col-sm-12
       .table-responsive.sql-query-output-table
