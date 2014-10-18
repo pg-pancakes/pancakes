@@ -1,4 +1,4 @@
-require "rails"
+require "active_support/core_ext/module/attribute_accessors"
 require "net/ssh/gateway"
 require "pancakes/engine"
 require "pancakes/database/connection"
@@ -19,26 +19,12 @@ module Pancakes
   mattr_accessor :ssh_credentials
   @@ssh_credentials = {}
 
-  mattr_accessor :config_file_path
-  @@config_file_path = "/config/pancakes.yml"
-
+  mattr_accessor :database_yml_path
+  mattr_accessor :pancakes_yml_path
   mattr_accessor :connection
-  @@connection = nil
-
   mattr_accessor :gateway
-  @@gateway = nil
-
   mattr_accessor :gateway_port
-  @@gateway_port = nil
-
   mattr_accessor :environments
-  @@environments = Dir.glob("./config/environments/*.rb").map { |filename| File.basename(filename, ".rb") }
-
-  mattr_writer :environments
-
-  def self.environments
-    @environments ||= Dir.glob("./config/environments/*.rb").map { |filename| File.basename(filename, ".rb") }
-  end
 
   ###############
   ### METHODS ###
@@ -46,39 +32,35 @@ module Pancakes
 
   def self.connect options={}
     # Read configuration
-    databases = read_configuration || {}
-    database = databases[options[:database].to_s || Rails.env]
-    database = database.merge(options)
+    environment = options[:database].to_s || Rails.env
+    database_config = configurations[environment].merge(options)
     # Tunnel SSH
     #if Pancakes.
     #Pancakes.gateway = Net::SSH::Gateway.new("host","user",{:verbose => :debug})
     # Connect to DB
     Pancakes.connection = PG::Connection.new(
-      host: database["host"],
-      hostaddr: database["hostaddr"],
-      port: database["port"],
-      dbname: database["database"],
-      user: database["username"],
-      password: database["password"],
-      #connection_timeout: database["timeout"],
-      #options: database["options"],
-      #tty: database["tty"],
-      #sslmode: database["sslmode"],
-      #gsslib: database["gsslib"],
-      #service: database["service"],
+      host: database_config["host"],
+      hostaddr: database_config["hostaddr"],
+      port: database_config["port"],
+      dbname: database_config["database"],
+      user: database_config["username"],
+      password: database_config["password"],
+      #connection_timeout: database_config["timeout"],
+      #options: database_config["options"],
+      #tty: database_config["tty"],
+      #sslmode: database_config["sslmode"],
+      #gsslib: database_config["gsslib"],
+      #service: database_config["service"],
     )
   end
 
-  def self.read_configuration
-    database_yaml_path = "./config/database.yml"
-    enviroments_path = "./config/environments"
-    databases = (File.exists?(database_yaml_path) && YAML.load_file(database_yaml_path)) || {}
-    configuration = (File.exists?(Pancakes.config_file_path) && YAML.load_file(Pancakes.config_file_path)) || {}
-    databases = databases.merge configuration
-    databases.keys.each do |database|
-      databases.delete(database) unless environments.include? database
+  def self.configurations
+    @configurations ||= begin
+      database_yml = (File.exists?(database_yml_path) && YAML.load_file(database_yml_path)) || {}
+      pancakes_yml = (File.exists?(pancakes_yml_path) && YAML.load_file(pancakes_yml_path)) || {}
+      merged_yml = database_yml.merge(pancakes_yml)
+      merged_yml.slice *Pancakes.environments
     end
-    databases
   end
 
 end

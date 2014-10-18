@@ -3,7 +3,9 @@ module Pancakes
     isolate_namespace Pancakes
 
     initializer "pancakes.connection" do
-      $pg = Struct.new(:connection).new
+      Pancakes.database_yml_path ||= Rails.root.join('config', 'database.yml')
+      Pancakes.pancakes_yml_path ||= Rails.root.join('config', 'pancakes.yml')
+      Pancakes.environments = Dir[Rails.root.join('config', 'environments', '*.rb')].map { |filename| File.basename(filename, ".rb") }
     end
   end
 end
