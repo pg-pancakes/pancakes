@@ -1,5 +1,5 @@
 require "rails"
-require "net/ssh/gateway" 
+require "net/ssh/gateway"
 require "pancakes/engine"
 require "pancakes/database/connection"
 
