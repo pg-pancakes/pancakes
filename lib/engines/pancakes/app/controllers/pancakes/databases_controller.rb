@@ -1,6 +1,7 @@
 module Pancakes
   class DatabasesController < Pancakes::ApplicationController
     def show
+      logger.info(Pancakes.configurations[Rails.env.to_s])
       @tables = database.tables
     end
 
