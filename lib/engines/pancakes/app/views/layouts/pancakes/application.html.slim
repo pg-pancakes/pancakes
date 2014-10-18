@@ -16,8 +16,11 @@ html
           - if @tables.any?
             - @tables.collect(&:name).each do |table_name|
               li class="#{(params[:id] == table_name) ? 'active' : ''}"
-                = link_to table_name, database_table_path(database.name, table_name)
+                = link_to database_table_path(database.name, table_name) do
+                  i.fa.fa-table
+                  = table_name
           - else
             li No tables
     .container.main-container
-      = yield
+      .content
+        = yield

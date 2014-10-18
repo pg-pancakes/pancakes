@@ -3,16 +3,18 @@
     nav
       ul.nav.navbar-nav
         li.dropdown
-          a href="#" class="dropdown-toggle" data-toggle="dropdown"
-            | #{database.name.capitalize}
+          = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"}do
+            i.fa.fa-database
+            = database.name.capitalize
             span.caret
           ul.dropdown-menu role="menu"
             - Pancakes.environments.each do |environment|
               li
-                = link_to environment.capitalize, database_path(id: environment)
+                = link_to database_path(id: environment) do
+                  = environment.capitalize
         li.action-tab
           = link_to "#structure" do
-            i.fa.fa-table
+            i.fa.fa-newspaper-o
             |Structure
         li.action-tab
           = link_to "#content" do
