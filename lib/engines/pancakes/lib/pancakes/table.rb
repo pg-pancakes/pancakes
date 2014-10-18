@@ -18,6 +18,10 @@ module Pancakes
       Pancakes.connection.columns(name)
     end
 
+    def primary_keys
+      Pancakes.connection.primary_keys(name)
+    end
+
     def insert(attributes)
       Pancakes.connection.insert(name, attributes)
     end

@@ -27,6 +27,12 @@ module Pancakes
       exec("SELECT column_name FROM information_schema.columns WHERE table_name = '#{table_name}'")
     end
 
+    def primary_keys(table_name)
+      exec( "SELECT pg_attribute.attname, format_type(pg_attribute.atttypid, pg_attribute.atttypmod)"\
+            "FROM pg_index, pg_class, pg_attribute "\
+            "WHERE pg_class.oid = '#{table_name}'::regclass AND indrelid = pg_class.oid AND pg_attribute.attrelid = pg_class.oid AND pg_attribute.attnum = any(pg_index.indkey) AND indisprimary")
+    end
+
     def schema_query(table_name)
       exec("select column_name, data_type, character_maximum_length, is_nullable from INFORMATION_SCHEMA.COLUMNS where table_name = '#{table_name}';")
     end
@@ -44,8 +50,6 @@ module Pancakes
     end
 
     def initialize_ssh options={}
-
-      # Determine port if needed
       unless options["database_port"]
         options["database_port"] = 64999
         begin
