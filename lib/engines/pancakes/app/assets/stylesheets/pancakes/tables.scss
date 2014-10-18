@@ -1,9 +1,13 @@
 .sql-query{
-  .sql-query-terminal{
+  .sql-query-console{
     textarea{
       width: 100%;
       max-width: 100%;
       min-height: 300px;
     }
+  }
+  .errors{
+    padding-left: 10px;
+    border: 1px solid #dddddd;
   }
 }

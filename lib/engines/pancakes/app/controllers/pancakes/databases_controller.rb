@@ -10,9 +10,9 @@ module Pancakes
 
     def query
       begin
-        database.exec_query(params[:sql_command])
+        @result = database.exec_query(params[:sql_command])
       rescue PG::Error => e
-
+        @error = e
       end
     end
 
