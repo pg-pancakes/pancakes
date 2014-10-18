@@ -8,13 +8,16 @@ html
     = csrf_meta_tags
 
   body
-    = render 'shared/header'
+    = render 'pancakes/shared/header'
 
     #wrapper
       #sidebar-wrapper
         ul.sidebar-nav
-          - @tables.collect(&:name).each do |table_name|
-            li
-              = link_to table_name, database_table_path(database.name, table_name)
+          - if @tables.any?
+            - @tables.collect(&:name).each do |table_name|
+              li
+                = link_to table_name, database_table_path(database.name, table_name)
+          - else
+            li No tables
     .container.main-container
       = yield
