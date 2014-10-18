@@ -1,0 +1,27 @@
+h1 Listing posts
+
+table
+  thead
+    tr
+      th Author
+      th Title
+      th Body
+      th Tags
+      th
+      th
+      th
+
+  tbody
+    - @posts.each do |post|
+      tr
+        td = post.author_id
+        td = post.title
+        td = post.body
+        td = post.tags
+        td = link_to 'Show', post
+        td = link_to 'Edit', edit_post_path(post)
+        td = link_to 'Destroy', post, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Post', new_post_path

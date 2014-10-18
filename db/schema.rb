@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018071684) do
+ActiveRecord::Schema.define(version: 20141018071702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "posts", force: true do |t|
+    t.integer  "author_id"
+    t.string   "title"
+    t.text     "body"
+    t.hstore   "tags"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

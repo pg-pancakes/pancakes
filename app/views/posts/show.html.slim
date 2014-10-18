@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Author:
+  = @post.author_id
+p
+  strong Title:
+  = @post.title
+p
+  strong Body:
+  = @post.body
+p
+  strong Tags:
+  = @post.tags
+
+= link_to 'Edit', edit_post_path(@post)
+'|
+= link_to 'Back', posts_path
