@@ -38,20 +38,23 @@ module Pancakes
     #if Pancakes.
     #Pancakes.gateway = Net::SSH::Gateway.new("host","user",{:verbose => :debug})
     # Connect to DB
-    Pancakes.connection = PG::Connection.new(
-      host: database_config["host"],
+
+    connection_hash = {
+      host:     database_config["host"],
       hostaddr: database_config["hostaddr"],
-      port: database_config["port"],
-      dbname: database_config["database"],
-      user: database_config["username"],
+      port:     database_config["port"],
+      dbname:   database_config["database"],
+      user:     database_config["username"],
       password: database_config["password"],
       #connection_timeout: database_config["timeout"],
       #options: database_config["options"],
       #tty: database_config["tty"],
       #sslmode: database_config["sslmode"],
       #gsslib: database_config["gsslib"],
-      #service: database_config["service"],
-    )
+      #service: database_config["service"]
+    }
+
+    Pancakes.connection = PG::Connection.new(connection_hash)
   end
 
   def self.configurations
