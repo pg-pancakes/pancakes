@@ -1,4 +1,7 @@
 module Pancakes
-  class DatabasesController < ActionController::Base
+  class DatabasesController < ApplicationController
+    def show
+
+    end
   end
 end

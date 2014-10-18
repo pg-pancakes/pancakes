@@ -1,4 +1,4 @@
 module Pancakes
-  class TablesController < ActionController::Base
+  class TablesController < ApplicationController
   end
 end

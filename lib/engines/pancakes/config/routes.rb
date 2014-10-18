@@ -1,10 +1,9 @@
 Pancakes::Engine.routes.draw do
 
-  resources :servers do
-    resources :databases do
-      resources :tables do
-      end
+  root to: redirect("databases")
+
+  resources :databases do
+    resources :tables do
     end
   end
-
 end
