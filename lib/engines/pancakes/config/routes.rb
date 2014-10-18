@@ -1,9 +1,7 @@
 Pancakes::Engine.routes.draw do
 
-  resources :servers do
-    resources :databases do
-      resources :tables do
-      end
+  resources :databases do
+    resources :tables do
     end
   end
 
