@@ -7,16 +7,16 @@ require "pancakes/version"
 Gem::Specification.new do |s|
   s.name        = "pancakes"
   s.version     = Pancakes::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Pancakes."
-  s.description = "TODO: Description of Pancakes."
+  s.authors     = ["janko.marohnic@gmail.com", "stanko.krtalic@gmail.com", "marko.ivanek@gmail.com", "damir.svrtan@gmail.com"]
+  s.email       = ["janko.marohnic@gmail.com", "stanko.krtalic@gmail.com", "marko.ivanek@gmail.com", "damir.svrtan@gmail.com"]
+  s.homepage    = "https://github.com/railsrumble/r14-team-407"
+  s.summary     = "Summary of Pancakes."
+  s.description = "Description of Pancakes."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency "rails", "~> 4.1.6"
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "pg"
 end
