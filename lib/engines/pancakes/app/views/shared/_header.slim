@@ -4,7 +4,7 @@ header.navbar.navbar-default
       ul.nav.navbar-nav
         li.dropdown
           a href="#" class="dropdown-toggle" data-toggle="dropdown"
-            | #{params[:id].capitalize}
+            | #{database.name.capitalize}
             span.caret
           ul.dropdown-menu role="menu"
             - Pancakes.environments.each do |environment|
