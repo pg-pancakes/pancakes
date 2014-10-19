@@ -29,3 +29,4 @@ end
 gem "pancakes", path: "lib/engines/pancakes"
 gem "faker"
 gem "bugsnag"
+gem "rails_12factor"
