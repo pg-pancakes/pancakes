@@ -1,3 +1,6 @@
+$(".footer .errors").removeClass("alert-danger");
+$(".footer .errors").empty();
+
 <% if response.status == 200 %>
   $(".empty-row").replaceWith("<%= j render 'pancakes/records/new_record', record: @record %>")
 <% else %>
