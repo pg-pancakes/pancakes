@@ -30,7 +30,8 @@
             |Manage extensions
 
       ul.nav.navbar-nav.navbar-right
-        li.add-row
-          div.btn.btn-primary
-            i.fa.fa-plus
-            | Add new row
+        - if @table
+          li.add-row
+            div.btn.btn-primary
+              i.fa.fa-plus
+              | Add new row
