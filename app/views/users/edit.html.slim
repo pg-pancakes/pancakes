@@ -1,8 +1,15 @@
-h1 Editing user
-
-== render 'form'
-
-= link_to 'Show', @user
-'|
-= link_to 'Back', users_path
+.container
+  .col-md-4.col-md-offset-4
+    h1 Editing user
+    .well
+      .col-md-12
+        = render 'form'
+      .col-md-12
+        hr
+        = link_to @user, class: "btn btn-info btn-block" do
+          i.fa.fa-eye
+          |Show
+        br
+        = link_to 'Back', users_path, class: "btn btn-primary btn-block"
+      .clearfix
 

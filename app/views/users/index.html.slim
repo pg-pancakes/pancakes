@@ -1,23 +1,33 @@
-h1 Listing users
+.container
+  .col-md-12
+    h1 Users
+    .row
+      .col-md-3
+        = link_to new_user_path, class: "btn btn-primary btn-block" do
+          i.fa.fa-plus
+          |New user
+  .col-md-12
+    .table-responsive
+      table.table.table-hover
+        thead
+          tr
+            th Name
+            th Email
+            th
+            th
+            th
 
-table
-  thead
-    tr
-      th Name
-      th Email
-      th
-      th
-      th
-
-  tbody
-    - @users.each do |user|
-      tr
-        td = user.name
-        td = user.email
-        td = link_to 'Show', user
-        td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New User', new_user_path
+        tbody
+          - @users.each do |user|
+            tr
+              td = user.name
+              td = user.email
+              td = link_to user, class: "btn btn-info btn-xs btn-block" do
+                i.fa.fa-eye
+                |Show
+              td = link_to edit_user_path(user), class: "btn btn-warning btn-xs btn-block" do
+                i.fa.fa-edit
+                |Edit
+              td = link_to user, data: {:confirm => 'Are you sure?'}, method: :delete, class: "btn btn-danger btn-xs btn-block" do
+                i.fa.fa-trash-o
+                |Delete

@@ -1,5 +1,10 @@
-h1 New user
-
-== render 'form'
-
-= link_to 'Back', users_path
+.container
+  .col-md-4.col-md-offset-4
+    h1 New user
+    .well
+      .col-md-12
+        = render 'form'
+      .col-md-12
+        br
+        = link_to 'Back', users_path, class: "btn btn-primary btn-block"
+      .clearfix

@@ -2,9 +2,11 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :author_id
+    = f.input :author_id, collection: User.all, include_blank: false, value: f.object.author_id
     = f.input :title
     = f.input :body
-
   .form-actions
-    = f.button :submit
+    button.btn.btn-success.btn-block
+      i.fa.fa-check
+      |Save
+  br

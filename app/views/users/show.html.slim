@@ -1,12 +1,23 @@
-p#notice = notice
+.container
+  .col-md-6.col-md-offset-3
+    h1 Post
+    .well
+      .col-md-12
+        p#notice = notice
+      .col-md-12
+        p
+          strong Name:
+          = @user.name
+        p
+          strong Email:
+          = @user.email
+      .col-md-12
+        hr
+      .col-md-12
+        = link_to edit_user_path(@user), class: "btn btn-warning btn-block" do
+          i.fa.fa-edit
+          |Edit
+        br
+        = link_to 'Back', users_path, class: "btn btn-primary btn-block"
+      .clearfix
 
-p
-  strong Name:
-  = @user.name
-p
-  strong Email:
-  = @user.email
-
-= link_to 'Edit', edit_user_path(@user)
-'|
-= link_to 'Back', users_path

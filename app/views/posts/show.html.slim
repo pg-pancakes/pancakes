@@ -1,18 +1,39 @@
-p#notice = notice
-
-p
-  strong Author:
-  = @post.author_id
-p
-  strong Title:
-  = @post.title
-p
-  strong Body:
-  = @post.body
-p
-  strong Tags:
-  = @post.tags
-
-= link_to 'Edit', edit_post_path(@post)
-'|
-= link_to 'Back', posts_path
+.container
+  .col-md-6.col-md-offset-3
+    h1 Post
+    .well
+      .col-md-12
+        p#notice = notice
+      .col-md-12
+        p
+          strong Author:
+          br
+          = @post.author && @post.author.name
+        p
+          strong Title:
+          br
+          = @post.title
+        p
+          strong Body:
+          br
+          = @post.body
+        p
+          strong Tags:
+          br
+          - if @post.tags
+            - @post.tags.each do |key, value|
+              span.label.label-primary
+                = key
+                |&nbsp;
+                span.badge
+                  = value
+              |&nbsp;
+      .col-md-12
+        hr
+      .col-md-12
+        = link_to edit_post_path(@post), class: "btn btn-warning btn-block" do
+          i.fa.fa-edit
+          |Edit
+        br
+        = link_to 'Back', posts_path, class: "btn btn-primary btn-block"
+      .clearfix

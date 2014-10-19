@@ -1,8 +1,14 @@
-h1 Editing post
-
-== render 'form'
-
-= link_to 'Show', @post
-'|
-= link_to 'Back', posts_path
+.container
+  .col-md-4.col-md-offset-4
+    h1 Editing post
+    .well
+      .col-md-12
+        = render 'form'
+      .col-md-12
+        = link_to @post, class: "btn btn-info btn-block" do
+          i.fa.fa-eye
+          |Show
+        br
+        = link_to 'Back', posts_path, class: "btn btn-primary btn-block"
+      .clearfix
 

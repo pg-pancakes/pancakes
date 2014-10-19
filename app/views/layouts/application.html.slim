@@ -8,6 +8,31 @@ html
     = csrf_meta_tags
 
   body
+    .container
+      .spacer.clearfix
+      .spacer.clearfix
+      .col-md-12
+        .row
+          .col-md-3
+            = link_to root_path, class: "btn btn-danger btn-block" do
+              i.fa.fa-circle
+              |Landing page
+          .col-md-3
+            = link_to '/pg', class: "btn btn-warning btn-block" do
+              i.fa.fa-database
+              |Database backend
+          .col-md-3
+            = link_to users_path, class: "btn btn-info btn-block", disabled: (controller_name == "users") do
+              i.fa.fa-users
+              |Users
+          .col-md-3
+            = link_to posts_path, class: "btn btn-primary btn-block", disabled: (controller_name == "posts") do
+              i.fa.fa-file
+              |Posts
+      .col-md-12
+        hr
+        p Please note that this is only a simple example CRUD app. The real star of the show is the Pancakes engine, which you can take for a spin if tou click on the "Database backend" button.
+        hr
     = yield
 
 javascript:
