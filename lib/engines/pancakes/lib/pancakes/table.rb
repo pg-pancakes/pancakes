@@ -16,8 +16,17 @@ module Pancakes
       self.connection.records(name)
     end
 
+    def sorted_records(params)
+      self.connection.sorted_records(name, params)
+    end
+
     def columns
       self.connection.columns(name)
+    end
+
+    def count
+      result = self.connection.count(name)
+      result.first['count'].to_i
     end
 
     def primary_keys

@@ -23,8 +23,28 @@ module Pancakes
       exec("SELECT * FROM #{table_name}")
     end
 
+    def sorted_records(table_name, params)
+      query = "SELECT * FROM #{table_name}"
+
+      if params[:sort_attribute]
+        query += " ORDER BY #{params[:sort_attribute]} #{params[:order]}"
+      end
+
+      if params[:page]
+        offset = params[:per_page].to_i * (params[:page] - 1)
+        limit  = params[:per_page]
+        query += " LIMIT #{limit} OFFSET #{offset}"
+      end
+
+      exec(query)
+    end
+
     def columns(table_name)
       exec("SELECT column_name FROM information_schema.columns WHERE table_name = '#{table_name}'")
+    end
+
+    def count(table_name)
+      exec("SELECT COUNT(*) FROM #{table_name}")
     end
 
     def primary_keys(table_name)

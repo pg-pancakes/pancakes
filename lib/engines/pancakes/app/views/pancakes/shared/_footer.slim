@@ -1,10 +1,7 @@
 .footer.navbar.navbar-default.navbar-fixed-bottom
   .container-fluid
-    span.errors.col-md-4
+    span.errors
     nav.pull-right
       ul.nav.navbar-nav
         li
-          ul.pagination.no-padding
-            - (0...5).each do |i|
-              li
-                = link_to "#{i}", "#"
+          = render "pancakes/shared/pagination"

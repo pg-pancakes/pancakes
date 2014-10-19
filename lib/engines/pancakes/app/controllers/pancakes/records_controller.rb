@@ -22,8 +22,12 @@ module Pancakes
 
     private
 
+    def database
+      @database ||= Pancakes::Database.new(params[:database_id])
+    end
+
     def table
-      @table ||= Pancakes::Table.new(params[:table_id])
+      @table ||= Pancakes::Table.new(database, params[:table_id])
     end
   end
 end

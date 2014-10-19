@@ -22,6 +22,10 @@ body {
     height: 49px;
     line-height: 49px;
     margin-left: 235px;
+    p{
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
 }
 
@@ -52,8 +56,10 @@ table {
     &.tables {
       td {
         max-width: 500px;
-        &[contenteditable=true]:focus {
-          background: #accef3;
+        &[contenteditable=true] {
+          &:focus {
+            background: #accef3;
+          }
         }
       }
     }
