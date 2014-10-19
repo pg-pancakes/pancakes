@@ -4,7 +4,4 @@
     nav.pull-right
       ul.nav.navbar-nav
         li
-          ul.pagination.no-padding
-            - (0...5).each do |i|
-              li
-                = link_to "#{i}", "#"
+          = render "pancakes/shared/pagination"

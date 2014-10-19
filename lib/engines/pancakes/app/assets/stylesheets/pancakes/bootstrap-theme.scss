@@ -56,8 +56,10 @@ table {
     &.tables {
       td {
         max-width: 500px;
-        &[contenteditable=true]:focus {
-          background: #accef3;
+        &[contenteditable=true] {
+          &:focus {
+            background: #accef3;
+          }
         }
       }
     }
