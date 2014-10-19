@@ -4,14 +4,14 @@ module Pancakes
     def create
       database.connection.create_extension(params[:name], if_not_exists: true)
       @success = true
-    rescue PG::UndefinedFile
+    rescue PG::UndefinedFile, PG::InsufficientPrivilege
       @success = false
     end
 
     def destroy
       database.connection.drop_extension(params[:id])
       @success = true
-    rescue PG::UndefinedObject
+    rescue PG::UndefinedObject, PG::InsufficientPrivilege
       @success = false
     end
 
