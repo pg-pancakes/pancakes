@@ -33,6 +33,7 @@ section {
     h2 {
       color: #fad46b;
       text-shadow: 0px 4px 20px #190e04;
+      font-size: 43px;
     }
   }
   &.info {
@@ -40,6 +41,42 @@ section {
     background-color: #fad46b;
   }
   &.footer {
+    padding-top: 45px;
+    padding-bottom: 45px;
     background-color: #2c1908;
   }
+}
+
+h2 {
+  font-size: 65px;
+}
+
+h3 {
+  font-size: 45px;
+}
+
+h4 {
+  font-size: 25px;
+}
+
+p {
+  font-size: 20px;
+}
+
+.btn {
+  //&.btn-warning {
+  //  box-shadow: 0px 4px 0px darken($btn-warning-bg, 15%);
+  //}
+  //&.btn-primary {
+  //  box-shadow: 0px 4px 0px darken($btn-primary-bg, 15%);
+  //}
+  .fa {
+    padding-right: 5px;
+  }
+}
+
+pre {
+  background-color: #2c1908;
+  color: #e8e2e7;
+  border: 1px solid lighten(#2c1908, 30%);
 }

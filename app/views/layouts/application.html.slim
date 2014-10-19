@@ -9,3 +9,11 @@ html
 
   body
     = yield
+
+javascript:
+  var rumbleBannerBackgroundColor, rumbleBannerTextColor, rumbleBannerLinkColor, rumbleBannerPlacement;
+  rumbleBannerBackgroundColor = "#161616";
+  rumbleBannerTextColor = "#b0b0b0";
+  rumbleBannerLinkColor = "#ffffff";
+  rumbleBannerPlacement = "top"; // Optionally replace with "bottom".
+= javascript_include_tag 'http://s0.railsrumble.com/banner-2014.js'

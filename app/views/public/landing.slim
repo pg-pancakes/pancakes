@@ -1,5 +1,33 @@
 section.hero
   h1 Pancakes
-  h2 Pancakes is a postgres web client for Rails
+  h2 A postgres web client for Rails
+  .clearfix
 section.info
+  .container
+    .col-md-12
+      h2 Try them!
+      p You can try our pancakes by following this recepy.
+      p First take some patiance and love, sture them together and click on the web app button below. It will take you to a simply Rails CRUD app where you can create users and articles.
+      p Play around! Creat a few users then a few articles if you don't feel like playing just skip to the next part.
+      p When you are done with the web app go to the database backend.
+      .row
+        .col-md-4
+          = link_to posts_path, class: "btn btn-danger btn-block btn-lg" do
+            i.fa.fa-edit
+            |Web app
+        .col-md-4
+          = link_to '/pg', class: "btn btn-warning btn-block btn-lg" do
+            i.fa.fa-database
+            |Database backend
+    .col-md-12
+      h2 Install them
+      p You can install this engine by adding the following line to your gemfile
+      p * Pancakes may not be on RubyGems while you are reading this. Please, try later.
+      pre
+        |gem 'pancakes'
+  .clearfix
 section.footer
+  .col-md-3
+    = link_to "http://railsrumble.com/" do
+      = image_tag "rails-rumble-badge-light.png"
+  .clearfix
