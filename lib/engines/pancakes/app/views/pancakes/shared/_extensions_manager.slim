@@ -1,0 +1,31 @@
+.table-responsive
+  table.table.sql.database-extensions.table-hover.table-bordered
+    thead
+      tr
+        th Name
+        th Default version
+        th Installed version
+        th Comment
+        th Actions
+    tbody
+      - @database.connection.all_extensions.each do |column|
+        tr class="extension-#{column['name']}"
+          td= column['name']
+          td= column['default_version']
+          td.installed-version = column['installed_version']
+          td= column['comment']
+          td
+            - unless column['installed_version']
+              = link_to database_extensions_path(database_id: database.name, name: column['name']), method: :post, remote: true, class: "btn btn-success btn-xs" do
+                  i.fa.fa-download
+                  |Install
+              = link_to database_extension_path(database_id: database.name, id: column['name']), method: :delete, remote: true, class: "btn btn-danger btn-xs hidden" do
+                  i.fa.fa-close
+                  |Uninstall
+            - else
+              = link_to database_extensions_path(database_id: database.name, name: column['name']), method: :post, remote: true, class: "btn btn-success btn-xs hidden" do
+                  i.fa.fa-download
+                  |Install
+              = link_to database_extension_path(database_id: database.name, id: column['name']), method: :delete, remote: true, class: "btn btn-danger btn-xs" do
+                  i.fa.fa-close
+                  |Uninstall

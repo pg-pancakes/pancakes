@@ -70,16 +70,16 @@ table {
             background: #accef3;
           }
         }
-        .flash {
-          &:hover {
-            background-color: transparent;
-          }
-        }
+      }
+    }
+    .flash {
+      &:hover td {
+        background-color: transparent;
       }
     }
   }
 
-  .fa {
+  td > .fa {
     color: #777;
 
     &:hover {

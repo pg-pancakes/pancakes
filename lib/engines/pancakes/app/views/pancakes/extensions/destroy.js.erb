@@ -1,0 +1,27 @@
+$tableRow = $(".extension-<%= params[:id] %>");
+$tableRow.removeClass('green-out');
+$tableRow.removeClass('yellow-out');
+$tableRow.removeClass('red-out');
+$tableRow.removeClass('flash');
+
+$(".footer .errors").removeClass("alert-danger");
+$(".footer .errors").empty();
+
+<% if @success %>
+  $tableRow.addClass('flash');
+  $tableRow.addClass('green-out');
+  $tableRow.find('a.btn').toggleClass('hidden')
+  setTimeout(function() {
+    $tableRow.removeClass('flash green-out');
+  }, 1000);
+<% else %>
+  $tableRow.addClass('flash');
+  $tableRow.addClass('red-out');
+  setTimeout(function() {
+    $tableRow.removeClass('flash red-out');
+  }, 1000);
+
+  $(".footer .errors").addClass("alert-danger");
+  $(".footer .errors").append("<p>Unable to install. Insufficient permissions.</p>");
+<% end %>
+$tableRow.find('.installed-version').text("<%= database.connection.extension_installed_version(params[:id]) %>");

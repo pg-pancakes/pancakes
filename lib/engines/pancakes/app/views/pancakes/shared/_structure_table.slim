@@ -1,0 +1,15 @@
+.table-responsive
+  table.table.sql.table-hover.table-bordered
+    thead
+      tr
+        th Field
+        th Type
+        th Max Length
+        th Allow Null
+    tbody
+      - @schema.each do |column|
+        tr
+          td= column['column_name']
+          td= column['data_type']
+          td= column['character_maximum_length']
+          td= boolean_glyphicon(column['is_nullable'])

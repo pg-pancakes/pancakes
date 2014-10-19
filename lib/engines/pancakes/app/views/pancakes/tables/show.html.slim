@@ -1,52 +1,13 @@
 .tab-content
-  .tab-pane.sql-query
-    .row.sql-query-console
-      .col-sm-12
-        = form_tag query_database_path(database.name), remote: true, class: 'sql-query' do
-          = text_area_tag(:sql_command)
-          = submit_tag 'Execute Query', class: 'btn btn-primary pull-right'
-    .row.sql-query-output
-      .col-sm-12
-        .table-responsive.sql-query-output-table
-          table.table.table-hover.table-bordered
-            thead
-            tbody
-        .errors.alert-danger
 
+    .tab-pane.extensions
+      = render 'pancakes/shared/extensions_manager'
 
-  .tab-pane.table-structure
-    .table-responsive
-      table.table.sql.table-hover.table-bordered
-        thead
-          tr
-            th Field
-            th Type
-            th Max Length
-            th Allow Null
-        tbody
-          - @schema.each do |column|
-            tr
-              td= column['column_name']
-              td= column['data_type']
-              td= column['character_maximum_length']
-              td= boolean_glyphicon(column['is_nullable'])
+    .tab-pane.sql-query
+      = render 'pancakes/shared/query_console'
 
-  .tab-pane.table-content.active
-    .table-responsive
-      .errors.alert-danger
-      table.table.sql.table-hover.table-bordered.tables data-database-name="#{database.name}" data-table-name="#{@table.name}"
-        thead
-          tr
-            - @columns.each do |column|
-              th class="#{(params[:sort_attribute] == column["column_name"]) ? 'active' : ''}"
-                = link_to url_for(sort_attribute: column["column_name"], order: ((params[:order] == "DESC") ? "ASC" : "DESC"))
-                  - if params[:sort_attribute] == column["column_name"]
-                    - if params[:order] == "DESC"
-                      i.fa.fa-caret-down
-                    - elsif params[:order] == "ASC"
-                      i.fa.fa-caret-up
-                  = column["column_name"]
-            th.row-actions
+    .tab-pane.table-structure
+      = render 'pancakes/shared/structure_table'
 
-        tbody
-          = render 'pancakes/records/records', records: @records, editable: true
+    .tab-pane.table-content.active
+      = render 'pancakes/shared/content_table'
