@@ -12,11 +12,11 @@
               li
                 = link_to database_path(id: environment) do
                   = environment.capitalize
-        li.action-tab
+        li.action-tab class="#{!@table && 'disabled'}"
           = link_to "#structure", data: { toggle: "tab", target: ".tab-pane.table-structure"} do
             i.fa.fa-newspaper-o
             |Structure
-        li.action-tab
+        li.action-tab class="#{!@table && 'disabled'}"
           = link_to "#content", data: { toggle: "tab", target: ".tab-pane.table-content"} do
             i.fa.fa-archive
             |Content
@@ -24,3 +24,8 @@
           = link_to "#console", data: { toggle: "tab", target: ".tab-pane.sql-query"} do
             i.fa.fa-terminal
             |Console
+        li.action-tab
+          = link_to "#extensions", data: { toggle: "tab", target: ".tab-pane.extensions"} do
+            i.fa.fa-puzzle-piece
+            |Manage extensions
+      ul.nav.navbar-nav.navbar-right

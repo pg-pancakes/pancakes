@@ -8,6 +8,7 @@ Pancakes::Engine.routes.draw do
     resources :tables do
       resources :records
     end
+    resources :extensions, only: [:create, :destroy]
   end
 
 end

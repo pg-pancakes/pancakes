@@ -91,7 +91,7 @@ module Pancakes
 
     def drop_extension extension_name, params={}
       command = "DROP EXTENSION"
-      command += " IF EXISTS" if params[:if_not_exists]
+      command += " IF EXISTS" if params[:if_exists]
       command += " #{extension_name}"
       if params[:cascade] && !params[:restrict]
         command += " CASCADE"
@@ -99,6 +99,10 @@ module Pancakes
         command += " RESTRICT"
       end
       exec(command)
+    end
+
+    def extension_installed_version extension_name
+      exec("SELECT installed_version FROM pg_available_extensions WHERE name LIKE '#{extension_name}'").values.flatten.first
     end
 
     def initialize_ssh params={}
