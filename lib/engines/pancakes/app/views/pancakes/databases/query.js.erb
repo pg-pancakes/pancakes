@@ -1,12 +1,16 @@
 $('.sql-query-output thead' ).empty();
 $('.sql-query-output tbody' ).empty();
 $(".footer .errors").removeClass("alert-danger");
+$(".footer .errors").removeClass("alert-success");
 $(".footer .errors").empty();
 
 <% if @result %>
   <% if @result.any? %>
     $(".sql-query-output thead").append("<%= j render('pancakes/tables/header_keys', header_keys: @result.first.keys) %>");
     $(".sql-query-output tbody").append("<%= j render('pancakes/records/records', records: @result, editable: false) %>");
+  <% else %>
+    $(".footer .errors").addClass("alert-success");
+    $(".footer .errors").append("<p>Successful command execution</p>");
   <% end %>
 <% else %>
     $(".footer .errors").addClass("alert-danger");
