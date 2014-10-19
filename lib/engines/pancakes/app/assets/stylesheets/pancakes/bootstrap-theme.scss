@@ -14,3 +14,21 @@ a {
     padding-right: 5px;
   }
 }
+
+.fluid-container {
+  margin-left: 15px;
+  margin-right: 0px;
+}
+
+table {
+  &.table {
+    &.sql {
+      width: 100%;
+    }
+    &.tables {
+      td {
+        max-width: 500px;
+      }
+    }
+  }
+}

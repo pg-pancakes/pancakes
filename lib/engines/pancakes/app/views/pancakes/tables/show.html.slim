@@ -18,7 +18,7 @@
     .row
       .col-sm-12
         .table-responsive
-          table.table.table-hover.table-bordered
+          table.table.sql.table-hover.table-bordered
             thead
               tr
                 td Field
@@ -37,7 +37,7 @@
     .row
       .col-sm-12
         .table-responsive
-          table.table.table-hover.table-bordered data-database-name="#{database.name}" data-table-name="#{@table.name}"
+          table.table.sql.table-hover.table-bordered.tables data-database-name="#{database.name}" data-table-name="#{@table.name}"
             thead
               tr
                 - @columns.each do |column|
