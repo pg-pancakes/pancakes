@@ -27,6 +27,10 @@ module Pancakes
       exec("SELECT column_name FROM information_schema.columns WHERE table_name = '#{table_name}'")
     end
 
+    def count(table_name)
+      exec("SELECT COUNT(*) FROM #{table_name}")
+    end
+
     def primary_keys(table_name)
       exec( "SELECT pg_attribute.attname, format_type(pg_attribute.atttypid, pg_attribute.atttypmod)"\
             "FROM pg_index, pg_class, pg_attribute "\

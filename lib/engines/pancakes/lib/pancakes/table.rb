@@ -20,6 +20,11 @@ module Pancakes
       self.connection.columns(name)
     end
 
+    def count
+      result = self.connection.count(name)
+      result.first['count'].to_i
+    end
+
     def primary_keys
       self.connection.primary_keys(name)
     end

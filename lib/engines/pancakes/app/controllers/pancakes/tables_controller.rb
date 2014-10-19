@@ -6,6 +6,7 @@ module Pancakes
       @records = @table.records
       @columns = @table.columns
       @schema  = @table.schema
+      @count   = @table.count
     end
 
     private
