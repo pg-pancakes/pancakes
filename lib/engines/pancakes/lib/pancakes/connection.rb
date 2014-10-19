@@ -1,5 +1,6 @@
 require "delegate"
 require "pg"
+require "pg_hstore"
 require "pancakes/table"
 
 module Pancakes

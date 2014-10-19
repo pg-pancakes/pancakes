@@ -4,6 +4,8 @@ module Pancakes
   class Table
     include ActiveModel::Conversion
 
+    HSTORE_DATA_TYPE = 'USER-DEFINED'
+
     attr_reader :database, :connection, :name
 
     def initialize(database,name)
@@ -13,15 +15,17 @@ module Pancakes
     end
 
     def records
-      self.connection.records(name)
+      @records ||= self.connection.records(name)
+      parse_hstore(@records) if hstore_columns.any?
     end
 
     def sorted_records(params)
-      self.connection.sorted_records(name, params)
+      @sorted_records ||= self.connection.sorted_records(name, params)
+      parse_hstore(@sorted_records) if hstore_columns.any?
     end
 
     def columns
-      self.connection.columns(name)
+      @columns ||= self.connection.columns(name)
     end
 
     def count
@@ -30,7 +34,7 @@ module Pancakes
     end
 
     def primary_keys
-      self.connection.primary_keys(name)
+      @primary_keys ||= self.connection.primary_keys(name)
     end
 
     def insert(attributes)
@@ -46,7 +50,24 @@ module Pancakes
     end
 
     def schema
-      self.connection.schema_query(name)
+      @schema ||= self.connection.schema_query(name)
     end
+
+    private
+
+      def parse_hstore(records)
+        parsed_records = records.map do |record|
+          hstore_columns.each do |hstore_column|
+            if record[hstore_column]
+              record[hstore_column] = PgHstore.load(record[hstore_column]).to_json
+            end
+          end
+          record
+        end
+      end
+
+      def hstore_columns
+        @hstore_columns ||= schema.map{|column| column['column_name'] if column['data_type'] == HSTORE_DATA_TYPE }.compact
+      end
   end
 end
