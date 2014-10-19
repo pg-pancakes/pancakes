@@ -1,4 +1,5 @@
 <% unless response.status == 200 %>
+  $('.footer .errors').empty();
   $(".footer .errors").addClass("alert-danger");
   $(".footer .errors").append("<p><%= j @error.message %></p>");
 <% end %>
