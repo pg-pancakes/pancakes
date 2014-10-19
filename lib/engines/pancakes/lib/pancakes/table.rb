@@ -51,6 +51,10 @@ module Pancakes
       self.connection.update(name, id, attributes)
     end
 
+    def delete(id)
+      self.connection.delete(name, id)
+    end
+
     def schema
       @schema ||= self.connection.schema_query(name)
     end
