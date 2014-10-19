@@ -38,7 +38,15 @@ module Pancakes
     end
 
     def insert(attributes)
-      self.connection.insert(name, attributes)
+      attributes.keys.each do |attribute_name|
+        if attribute_name.in? hstore_columns
+          attributes[attribute_name] = if attributes[attribute_name].present?
+            PgHstore.dump(JSON.parse(attributes[attribute_name]), true)
+          end
+        end
+      end
+      records = self.connection.insert(name, attributes)
+      parse_hstore(records)
     end
 
     def update(id, attributes)
