@@ -80,3 +80,15 @@ pre {
   color: #e8e2e7;
   border: 1px solid lighten(#2c1908, 30%);
 }
+
+.spacer {
+  margin-top: 4rem;
+}
+
+table.table {
+  tr {
+    td {
+      white-space: nowrap;
+    }
+  }
+}

@@ -1,27 +1,52 @@
-h1 Listing posts
-
-table
-  thead
-    tr
-      th Author
-      th Title
-      th Body
-      th Tags
-      th
-      th
-      th
-
-  tbody
-    - @posts.each do |post|
-      tr
-        td = post.author_id
-        td = post.title
-        td = post.body
-        td = post.tags
-        td = link_to 'Show', post
-        td = link_to 'Edit', edit_post_path(post)
-        td = link_to 'Destroy', post, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Post', new_post_path
+.spacer.clearfix
+.spacer.clearfix
+.container
+  .col-md-12
+    h1 Posts
+    .row
+      .col-md-3
+        = link_to new_post_path, class: "btn btn-primary btn-block" do
+          i.fa.fa-plus
+          |New post
+  .col-md-12
+    .table-responsive
+      table.table.table-hover
+        thead
+          tr
+            th ID
+            th Title
+            th Body
+            th Tags
+            th
+            th
+            th
+        tbody
+          - @posts.each do |post|
+            tr
+              td = post.author_id
+              td
+                = post.title && post.title[0..40]
+                - if post.title && post.title.length > 40
+                  |...
+              td
+                = post.body && post.body[0..40]
+                - if post.body && post.body.length > 40
+                  |...
+              td
+                - if post.tags
+                  - post.tags.each do |key, value|
+                    span.label.label-primary
+                      = key
+                      |&nbsp;
+                      span.badge
+                        = value
+                    |&nbsp;
+              td = link_to post, class: "btn btn-info btn-xs btn-block" do
+                i.fa.fa-eye
+                |Show
+              td = link_to edit_post_path(post), class: "btn btn-warning btn-xs btn-block" do
+                i.fa.fa-edit
+                |Edit
+              td = link_to post, data: {:confirm => 'Are you sure?'}, method: :delete, class: "btn btn-danger btn-xs btn-block" do
+                i.fa.fa-trash-o
+                |Delete
