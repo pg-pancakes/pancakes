@@ -15,7 +15,7 @@ module Pancakes
     end
 
     def tables
-      results = exec("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")
+      results = self.exec("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")
       results.map { |result| result["table_name"] }
     end
 
