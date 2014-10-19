@@ -20,7 +20,7 @@ html
           .col-md-3
             = link_to '/pg', class: "btn btn-warning btn-block" do
               i.fa.fa-database
-              |Database backend
+              |Pancakes
           .col-md-3
             = link_to users_path, class: "btn btn-info btn-block", disabled: (controller_name == "users") do
               i.fa.fa-users
@@ -31,7 +31,11 @@ html
               |Posts
       .col-md-12
         hr
-        p Please note that this is only a simple example CRUD app. The real star of the show is the Pancakes engine, which you can take for a spin if tou click on the "Database backend" button.
+        p
+          | Please note that this is only a simple example CRUD app. The real star of the show is the Pancakes engine, which you can take for a spin if you click on the
+          b
+            |  Pancakes
+          |  button.
         hr
     = yield
 

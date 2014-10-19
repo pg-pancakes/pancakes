@@ -1,39 +1,42 @@
 section.hero
   h1 Pancakes
-  h2 A postgres web client for Rails
+  h2 A Postgres web client for Rails
   .clearfix
 section.info
   .container
     .col-md-12
-      h2 Try them!
-      p You can try our pancakes by following this recipe.
-      p First take some patience and love, stir them together and click on the web app button below. It will take you to a simple Rails CRUD app where you can create users and articles.
-      p Play around! Creat a few users then a few articles if you don't feel like playing just skip to the next part.
-      p When you are done with the web app, feel free to go to the database backend.
+      h2 Rails Rumble
+      p
+        | Our entry consists of a Rails engine called
+        b
+          |  Pancakes
+        |  that enables developers to edit their development, staging and production databases in Rails apps directly from their browser.
+      p
+        | To see the engine in action please click on the
+        b
+          |  Pancakes database client
+        |  button below.
+      p We've also created an example app to go with our engine. All the changes done in the example app will reflect in the database backend, and vice versa.
+      p
+        b NOTE:
+        |  This engine is intended to only be used in development and therefore access to some databases and tables may be restricted.
       .row
         .col-md-4
           = link_to posts_path, class: "btn btn-danger btn-block btn-lg" do
             i.fa.fa-edit
-            |Web app
+            |Example app
         .col-md-4
           = link_to '/pg', class: "btn btn-warning btn-block btn-lg" do
             i.fa.fa-database
-            |Database backend
+            |Pancakes database client
     .col-md-12
-      h2 Install them
+      h2 Install the engine
       p You can install this engine by adding the following line to your gemfile
       p * Pancakes may not be on RubyGems while you are reading this. Please, try again later.
       pre
         |gem 'pancakes'
-    .col-md-12
-      h2 Rails Rumble
-      p Our entry consists of the Rails engine attached to this application called "Pancakes" that enables the user to edit the development, staging and production databases of their app directly from their browser.
-      p To see the engine in action please click on the "Database backend" button above.
-      p All the changes done in the example app will reflect in the database backend, and vice versa.
-      p
-        b NOTE:
-        | This engine is intended to only be used in development and therefore access to some databases and tables may be restricted.
       .spacer
+
   .clearfix
 section.footer
   .col-md-3
