@@ -16,6 +16,10 @@ module Pancakes
       self.connection.records(name)
     end
 
+    def sorted_records(params)
+      self.connection.sorted_records(name, params)
+    end
+
     def columns
       self.connection.columns(name)
     end
