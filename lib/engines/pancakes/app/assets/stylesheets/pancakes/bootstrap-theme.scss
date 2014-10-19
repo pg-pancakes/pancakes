@@ -75,25 +75,32 @@ ul.pagination {
   }
 }
 
+@mixin flash-element($color) {
+    -webkit-animation-name: flash- + $color;
+    animation-name: flash- + $color;
+
+    -webkit-animation-duration: 900ms;
+    animation-duration: 900ms;
+
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+}
+
 /* ANIMATIONS */
 .flash {
   &.green-out {
-    -webkit-animation-name: flash-green;
-    -webkit-animation-duration: 900ms;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease-out;
+    @include flash-element('green');
   }
+
   &.red-out {
-    -webkit-animation-name: flash-red;
-    -webkit-animation-duration: 900ms;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease-out;
+    @include flash-element('red');
   }
+
   &.yellow-out {
-    -webkit-animation-name: flash-yellow;
-    -webkit-animation-duration: 900ms;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease-out;
+    @include flash-element('yellow');
   }
 }
 
@@ -105,12 +112,13 @@ ul.pagination {
         background-color: #ffffff !important;
     }
 }
+
 @keyframes flash-green {
     0% {
-        background-color: $brand-success !important;
+        background-color: $brand-success;
     }
     100% {
-        background-color: #ffffff;
+        background-color: #ffffff !important;
     }
 }
 
@@ -122,12 +130,13 @@ ul.pagination {
         background-color: #ffffff !important;
     }
 }
+
 @keyframes flash-yellow {
     0% {
-        background-color: $brand-warning !important;
+        background-color: $brand-warning;
     }
     100% {
-        background-color: #ffffff;
+        background-color: #ffffff !important;
     }
 }
 
@@ -139,11 +148,12 @@ ul.pagination {
         background-color: #ffffff !important;
     }
 }
+
 @keyframes flash-red {
     0% {
-        background-color: $brand-danger !important;
+        background-color: $brand-danger;
     }
     100% {
-        background-color: #ffffff;
+        background-color: #ffffff !important;
     }
 }
