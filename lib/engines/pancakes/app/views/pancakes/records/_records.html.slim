@@ -1,9 +1,9 @@
 - records.each do |record|
   - if editable
-    tr
+    tr data-row-id="#{record['id']}"
       - record.each do |key, value|
         td class="existing-value" data-current-value= "#{value}" data-attribute="#{key}" contenteditable="true"= value.try(:html_safe)
-      td.action
+      td.action.delete
         i.fa.fa-close
 
   - else

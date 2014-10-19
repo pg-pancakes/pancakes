@@ -61,6 +61,11 @@ table {
             background: #accef3;
           }
         }
+        .flash {
+          &:hover {
+            background-color: transparent;
+          }
+        }
       }
     }
   }
@@ -103,6 +108,9 @@ ul.pagination {
 
   &.red-out {
     @include flash-element('red');
+    &:hover td {
+      @include flash-element('red');
+    }
   }
 
   &.yellow-out {

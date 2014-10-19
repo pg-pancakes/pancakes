@@ -18,6 +18,9 @@ module Pancakes
 
     def destroy
       table.delete(params[:id])
+    rescue PG::Error => e
+      @error = e
+      render status: 500
     end
 
     private
