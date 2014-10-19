@@ -16,6 +16,13 @@ body {
   bottom: 0px;
   background: #F8F8F8;
   border-top: 1px solid $gray-lighter;
+
+  .errors {
+    display: inline-block;
+    height: 49px;
+    line-height: 49px;
+    margin-left: 235px;
+  }
 }
 
 a {

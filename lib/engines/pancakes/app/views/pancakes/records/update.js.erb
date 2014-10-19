@@ -1,3 +1,4 @@
 <% unless response.status == 200 %>
-    $(".table-content .errors").append("<h3>Error:</h3><p><%= j @error.message %></p>");
+    $(".footer .errors").addClass("alert-danger");
+    $(".footer .errors").append("<h3>Error:</h3><p><%= j @error.message %></p>");
 <% end %>

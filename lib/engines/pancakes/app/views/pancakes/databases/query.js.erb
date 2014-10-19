@@ -8,5 +8,6 @@ $('.sql-query-output .errors').empty();
     $(".sql-query-output tbody").append("<%= j render('pancakes/records/records', records: @result, editable: false) %>");
   <% end %>
 <% else %>
-    $(".sql-query-output .errors").append("<h3>Error:</h3><p><%= j @error.message %></p>");
+    $(".footer .errors").addClass("alert-danger");
+    $(".footer .errors").append("<%= j @error.message %>");
 <% end %>
