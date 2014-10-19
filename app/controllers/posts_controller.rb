@@ -4,12 +4,6 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-
-    conn = PG::Connection.new({"dbname"=>"d9ehbqk013tk2k", "host"=>"ec2-54-83-9-127.compute-1.amazonaws.com", "port"=>5432, "user"=>"dvieyhljzydtrl", "password"=>"FGf6UnBL9NY_foa1s2fMHhvF5v"})
-    Rails.logger.info("-------------------------------------")
-    Rails.logger.info(conn.exec("SELECT * FROM POSTS").map {|x| x})
-    Rails.logger.info("-------------------------------------")
-
     @posts = Post.all
   end
 
