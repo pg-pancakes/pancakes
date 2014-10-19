@@ -44,7 +44,9 @@ module Pancakes
     def update(id, attributes)
       key = attributes.keys.first
       if key.in? hstore_columns
-        attributes[key] = PgHstore.dump(JSON.parse(attributes[key]), true)
+        attributes[key] = if attributes[key].present?
+          PgHstore.dump(JSON.parse(attributes[key]), true)
+        end
       end
       self.connection.update(name, id, attributes)
     end
