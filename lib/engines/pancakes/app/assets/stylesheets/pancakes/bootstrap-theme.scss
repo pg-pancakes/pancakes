@@ -37,6 +37,13 @@ table {
       width: 100%;
       th {
         cursor: pointer;
+        white-space: nowrap;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
         .fa {
           padding-right: 4px;
         }
@@ -45,6 +52,9 @@ table {
     &.tables {
       td {
         max-width: 500px;
+        &[contenteditable=true]:focus {
+          background: #accef3;
+        }
       }
     }
   }
