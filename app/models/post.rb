@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
     count = self.tags.count
     make_new = 3
     make_new = make_new - count if count
-    (0..make_new).each do |i|
+    (0...make_new).each do |i|
       self.tags[Faker::Lorem.word] = 1
     end
     self.tags.each do |key, value|
