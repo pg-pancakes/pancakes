@@ -29,10 +29,16 @@ section {
     h1 {
       padding-top: 25vh;
       font-size: 135px;
+      @media (max-width: $screen-sm-max) {
+        font-size: 60px;
+      }
     }
     h2 {
       color: #fad46b;
       text-shadow: 0px 4px 20px #190e04;
+      @media (max-width: $screen-sm-max) {
+        font-size: 20px;
+      }
       font-size: 43px;
     }
   }
