@@ -86,6 +86,10 @@ ul.pagination {
   }
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 @mixin flash-element($color) {
     -webkit-animation-name: flash- + $color;
     animation-name: flash- + $color;
