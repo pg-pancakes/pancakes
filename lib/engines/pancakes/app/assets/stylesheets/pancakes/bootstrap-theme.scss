@@ -9,6 +9,15 @@ body {
   }
 }
 
+.footer {
+  position: fixed;
+  height: 45px;
+  width: 100%;
+  bottom: 0px;
+  background: #F8F8F8;
+  border-top: 1px solid $gray-lighter;
+}
+
 a {
   .fa {
     padding-right: 5px;
@@ -31,5 +40,11 @@ table {
         max-width: 500px;
       }
     }
+  }
+}
+
+ul.pagination {
+  &.no-padding {
+    margin: 7px 0px 0px 0px;
   }
 }
