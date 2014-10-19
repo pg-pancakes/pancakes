@@ -99,6 +99,21 @@ ul.pagination {
   pointer-events: none;
 }
 
+.tab-pane {
+  &.introduction {
+    padding: 15px;
+    h3 {
+      font-size: 33px;
+      color: $brand-success;
+    }
+    ul {
+      li {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
 @mixin flash-element($color) {
     -webkit-animation-name: flash- + $color;
     animation-name: flash- + $color;
