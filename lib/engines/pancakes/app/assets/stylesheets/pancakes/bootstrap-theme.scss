@@ -64,6 +64,14 @@ table {
     }
     &.tables {
       td {
+        &::-moz-selection {
+          background: #F3D1AC;
+        }
+
+        &::selection {
+          background: #F3D1AC;
+        }
+
         max-width: 500px;
         &[contenteditable=true] {
           &:focus {
@@ -77,6 +85,10 @@ table {
         background-color: transparent;
       }
     }
+  }
+
+  .editing {
+    background: #accef3;
   }
 
   td > .fa {

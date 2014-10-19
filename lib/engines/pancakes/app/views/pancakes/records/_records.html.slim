@@ -1,5 +1,5 @@
 - if editable
-  tr.hidden.new-row.success
+  tr.hidden.new-row.editing
     - records.first.each_key do |key|
       td data-attribute="#{key}" contenteditable="true"
     td.create-row
