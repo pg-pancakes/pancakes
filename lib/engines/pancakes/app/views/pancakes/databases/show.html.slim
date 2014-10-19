@@ -1,7 +1,19 @@
 .tab-content
+  .tab-pane.introduction.active
+    .well
+      h3
+        i.fa.fa-check
+        |You are connected to the database "#{database.name}"
+      .col-md-12
+        h4 From here you can:
+        ul
+          li Connect to any table located in the sidebar to the left
+          li Connect to another database from the dropdown in the top left corner
+          li Chenge between different data views in the top navigation bar
+      .clearfix
 
-    .tab-pane.extensions
-      = render 'pancakes/shared/extensions_manager'
+  .tab-pane.extensions
+    = render 'pancakes/shared/extensions_manager'
 
-    .tab-pane.sql-query
-      = render 'pancakes/shared/query_console'
+  .tab-pane.sql-query
+    = render 'pancakes/shared/query_console'
