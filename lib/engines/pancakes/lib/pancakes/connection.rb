@@ -31,7 +31,7 @@ module Pancakes
       end
 
       if params[:page]
-        offset = params[:per_page].to_i * (params[:page] - 1)
+        offset = params[:per_page].to_i * (params[:page].to_i - 1)
         limit  = params[:per_page]
         query += " LIMIT #{limit} OFFSET #{offset}"
       end

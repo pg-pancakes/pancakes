@@ -1,24 +1,22 @@
-- per_page = (params[:per_page] || 500)
-- number_of_pages = (@count || 0) / per_page
-- current_page = (params[:per_page] || 0)
+- per_page = (params[:per_page].try(:to_i) || 10)
+- number_of_pages = (@count) / per_page
+- current_page = (params[:page].try(:to_i) || 1)
 - min_page = (current_page - 3) < 0 ? 0 : (current_page - 3)
-- max_page = (current_page + 3) > number_of_pages ? number_of_pages : (current_page + 3)
+- max_page = (current_page + 2) > number_of_pages ? number_of_pages : (current_page + 2)
 
 ul.pagination.no-padding
   - if number_of_pages != 0
-    - if (current_page + 1) <= number_of_pages
-      / Next
-      li
-        = link_to url_for(per_page: per_page, page: (current_page + 1)) do
-          i.fa.fa-arrow-left
+    / Next
+    li class="#{((current_page - 1) <= 0) && "disabled"}"
+      = link_to url_for(per_page: per_page, page: (current_page - 1)) do
+        i.fa.fa-arrow-left
     / Pages
-
-    - (min_page..max_page).each do |page_index|
-      li
-        = link_to url_for(per_page: per_page, page: page_index) do
+    - (min_page...max_page).each do |page_index|
+      li class="#{(((page_index+1) == current_page) && "disabled")}"
+        = link_to url_for(per_page: per_page, page: (page_index+1)), disabled: "#{(((page_index+1) == current_page) && "disabled")}" do
           |#{page_index + 1}
-    - if (current_page - 1) >= 0
-      / Previous
-      li
-        = link_to "#" do
-          i.fa.fa-arrow-right
+    / Previous
+    li class="#{((current_page + 1) > number_of_pages) && "disabled"}"
+      = link_to url_for(per_page: per_page, page: (current_page + 1)) do
+        i.fa.fa-arrow-right
+
