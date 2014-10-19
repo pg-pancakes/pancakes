@@ -1,10 +1,13 @@
+- if editable
+  tr.hidden.new-row.success
+    - records.first.each_key do |key|
+      td data-attribute="#{key}" contenteditable="true"
+    td.create-row
+      i.fa.fa-plus
+
 - records.each do |record|
   - if editable
-    tr data-row-id="#{record['id']}"
-      - record.each do |key, value|
-        td class="existing-value" data-current-value= "#{value}" data-attribute="#{key}" contenteditable="true"= value.try(:html_safe)
-      td.action.delete
-        i.fa.fa-close
+    = render 'pancakes/records/new_record', record: record
 
   - else
     tr

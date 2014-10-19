@@ -7,6 +7,15 @@ body {
     padding-bottom: 0px;
     margin-bottom: 0px !important;
   }
+
+  .add-row {
+    margin-right: 20px;
+    margin-top: 8px;
+
+    .fa {
+      margin-right: 5px;
+    }
+  }
 }
 
 .footer {
@@ -120,6 +129,10 @@ ul.pagination {
   &.yellow-out {
     @include flash-element('yellow');
   }
+
+  &.red-green-out {
+    @include flash-element('red-green');
+  }
 }
 
 @-webkit-keyframes flash-green {
@@ -173,5 +186,32 @@ ul.pagination {
     }
     100% {
         background-color: #ffffff !important;
+    }
+}
+
+@-webkit-keyframes flash-red-green {
+    0% {
+        background-color: $brand-danger;
+    }
+    100% {
+        background-color: $brand-success !important;
+    }
+}
+
+@keyframes flash-red-green {
+    0% {
+        background-color: $brand-danger;
+    }
+    100% {
+        background-color: $brand-success !important;
+    }
+}
+
+@keyframes flash-red-green {
+    0% {
+        background-color: $brand-danger;
+    }
+    100% {
+        background-color: $brand-success !important;
     }
 }

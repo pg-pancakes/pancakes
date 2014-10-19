@@ -59,7 +59,7 @@ module Pancakes
     end
 
     def insert(table_name, attributes)
-      exec("INSERT INTO #{table_name} (#{attributes.keys.join(", ")}) VALUES (#{attributes.values.join(", ")}) RETURNING *")
+      exec("INSERT INTO #{table_name} (#{attributes.keys.join(", ")}) VALUES (#{attributes.values.map { |v| "'#{v}'" }.join(', ')}) RETURNING *")
     end
 
     def update(table_name, id, attributes)

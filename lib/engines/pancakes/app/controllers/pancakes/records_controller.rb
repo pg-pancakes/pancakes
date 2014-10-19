@@ -3,9 +3,9 @@ require_dependency "pancakes/application_controller"
 module Pancakes
   class RecordsController < ApplicationController
     def create
-      attributes = table.insert(params[:record])
-      @record = Pancakes::Record.new(attributes)
-    rescue PG::Error
+      @record = table.insert(params[:attributes]).to_a.first
+    rescue PG::Error => e
+      @error = e
       render status: 500
     end
 
