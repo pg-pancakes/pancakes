@@ -1,5 +1,5 @@
 - per_page = (params[:per_page].try(:to_i) || 100)
-- number_of_pages = (@count) / per_page
+- number_of_pages = (@count || 0) / per_page
 - current_page = (params[:page].try(:to_i) || 1)
 - min_page = (current_page - 3) < 0 ? 0 : (current_page - 3)
 - max_page = (current_page + 2) > number_of_pages ? number_of_pages : (current_page + 2)

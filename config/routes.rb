@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root to: "posts#index"
+  root to: "public#landing"
 
+  get "landing", to: "public/landing"
   resources :posts
   resources :users
 
