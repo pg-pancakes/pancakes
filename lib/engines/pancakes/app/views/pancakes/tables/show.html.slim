@@ -19,10 +19,10 @@
       table.table.sql.table-hover.table-bordered
         thead
           tr
-            td Field
-            td Type
-            td Max Length
-            td Allow Null
+            th Field
+            th Type
+            th Max Length
+            th Allow Null
         tbody
           - @schema.each do |column|
             tr
@@ -37,6 +37,6 @@
         thead
           tr
             - @columns.each do |column|
-              td= column["column_name"]
+              th= column["column_name"]
         tbody
           = render 'pancakes/records/records', records: @records, editable: true

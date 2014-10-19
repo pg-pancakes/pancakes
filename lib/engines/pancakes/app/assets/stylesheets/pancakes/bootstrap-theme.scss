@@ -19,6 +19,12 @@ table {
   &.table {
     &.sql {
       width: 100%;
+      th {
+        cursor: pointer;
+        .fa {
+          padding-right: 4px;
+        }
+      }
     }
     &.tables {
       td {
