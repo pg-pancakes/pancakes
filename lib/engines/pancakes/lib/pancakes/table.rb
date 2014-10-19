@@ -16,12 +16,12 @@ module Pancakes
 
     def records
       @records ||= self.connection.records(name)
-      parse_hstore(@records) if hstore_columns.any?
+      hstore_columns.any? ? parse_hstore(@records) : @records
     end
 
     def sorted_records(params)
       @sorted_records ||= self.connection.sorted_records(name, params)
-      parse_hstore(@sorted_records) if hstore_columns.any?
+      hstore_columns.any? ? parse_hstore(@sorted_records) : @sorted_records
     end
 
     def columns
