@@ -42,11 +42,11 @@ module Pancakes
     end
 
     def update(id, attributes)
+      key = attributes.keys.first
+      if key.in? hstore_columns
+        attributes[key] = PgHstore.dump(JSON.parse(attributes[key]), true)
+      end
       self.connection.update(name, id, attributes)
-    end
-
-    def delete(id)
-      self.connection.delete(name, id)
     end
 
     def schema

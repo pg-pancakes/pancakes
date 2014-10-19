@@ -10,8 +10,7 @@ module Pancakes
     end
 
     def update
-      attributes = table.update(params[:id], params[:attributes])
-      @record = Pancakes::Record.new(attributes.to_a.first)
+      table.update(params[:id], params[:attributes])
     rescue PG::Error => e
       @error = e
       render status: 500
