@@ -49,6 +49,37 @@ module Pancakes
       exec("DELETE FROM #{table_name} WHERE id = #{id}")
     end
 
+    def all_extensions
+      exec("SELECT * FROM pg_available_extensions")
+    end
+
+    def installed_extensions
+      exec("SELECT extname, extversion FROM pg_extension")
+    end
+
+    def create_extension extension_name, options={}
+      command = "CREATE EXTENSION"
+      command += " IF NOT EXISTS" if params[:if_not_exists]
+      command += " #{extension_name}"
+      command += " WITH" if params[:old_version]
+      command += " SCHEMA #{params[:schema]}" if params[:schema]
+      command += " VERSION #{params[:version]}" if params[:version]
+      command += " FROM #{params[:old_version]}" if params[:old_version]
+      exec(command)
+    end
+
+    def drop_extension extension_name, options={}
+      command = "DROP EXTENSION"
+      command += " IF EXISTS" if params[:if_not_exists]
+      command += " #{extension_name}"
+      if params[:cascade] && !params[:restrict]
+        command += " CASCADE"
+      elsif !params[:cascade] && params[:restrict]
+        command += " RESTRICT"
+      end
+      exec(command)
+    end
+
     def initialize_ssh options={}
       unless options["database_port"]
         options["database_port"] = 64999
