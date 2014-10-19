@@ -38,12 +38,13 @@
         thead
           tr
             - @columns.each do |column|
-              th class="#{(params[:sort_attribbute] == column["column_name"]) ? 'active' : ''}"
-                - if params[:sort_attribute] == column["column_name"]
-                  - if params[:order] == "DESC"
-                    i.fa.fa-caret-down
-                  - elsif params[:order] == "ASC"
-                    i.fa.fa-caret-up
-                = column["column_name"]
+              th class="#{(params[:sort_attribute] == column["column_name"]) ? 'active' : ''}"
+                = link_to url_for(sort_attribute: column["column_name"], order: ((params[:order] == "DESC") ? "ASC" : "DESC"))
+                  - if params[:sort_attribute] == column["column_name"]
+                    - if params[:order] == "DESC"
+                      i.fa.fa-caret-down
+                    - elsif params[:order] == "ASC"
+                      i.fa.fa-caret-up
+                  = column["column_name"]
         tbody
           = render 'pancakes/records/records', records: @records, editable: true
