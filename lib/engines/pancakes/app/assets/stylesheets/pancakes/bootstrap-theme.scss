@@ -48,6 +48,15 @@ table {
       }
     }
   }
+
+  .fa {
+    color: #777;
+
+    &:hover {
+      color: #333;
+      cursor: pointer;
+    }
+  }
 }
 
 ul.pagination {

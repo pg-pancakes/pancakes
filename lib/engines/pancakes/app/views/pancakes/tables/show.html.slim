@@ -39,5 +39,6 @@
           tr
             - @columns.each do |column|
               th= column["column_name"]
+            th.row-actions
         tbody
           = render 'pancakes/records/records', records: @records, editable: true
