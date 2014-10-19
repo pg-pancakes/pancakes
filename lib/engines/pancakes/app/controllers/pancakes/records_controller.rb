@@ -5,7 +5,7 @@ module Pancakes
     def create
       attributes = table.insert(params[:record])
       @record = Pancakes::Record.new(attributes)
-    rescue PG::Error => e
+    rescue PG::Error
       render status: 500
     end
 
@@ -13,7 +13,7 @@ module Pancakes
       attributes = table.update(params[:id], params[:attributes])
       @record = Pancakes::Record.new(attributes.to_a.first)
     rescue PG::Error => e
-      render status: 500
+      @error = e
     end
 
     def destroy
