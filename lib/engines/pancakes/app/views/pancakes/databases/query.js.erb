@@ -1,6 +1,7 @@
 $('.sql-query-output thead' ).empty();
 $('.sql-query-output tbody' ).empty();
-$('.sql-query-output .errors').empty();
+$(".footer .errors").removeClass("alert-danger");
+$(".footer .errors").empty();
 
 <% if @result %>
   <% if @result.any? %>
@@ -9,5 +10,5 @@ $('.sql-query-output .errors').empty();
   <% end %>
 <% else %>
     $(".footer .errors").addClass("alert-danger");
-    $(".footer .errors").append("<%= j @error.message %>");
+    $(".footer .errors").append("<p><%= j @error.message %></p>");
 <% end %>
