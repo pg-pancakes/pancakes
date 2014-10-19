@@ -21,7 +21,7 @@ module Pancakes
     end
 
     def records(table_name)
-      exec("SELECT * FROM #{table_name}")
+      exec("SELECT * FROM #{table_name} ORDER BY id ASC")
     end
 
     def sorted_records(table_name, params)
