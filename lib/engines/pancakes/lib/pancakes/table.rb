@@ -4,34 +4,36 @@ module Pancakes
   class Table
     include ActiveModel::Conversion
 
-    attr_reader :name
+    attr_reader :database, :connection, :name
 
-    def initialize(name)
+    def initialize(database,name)
+      @database = database
+      @connection = database.connection
       @name = name
     end
 
     def records
-      Pancakes.connection.records(name)
+      self.connection.records(name)
     end
 
     def columns
-      Pancakes.connection.columns(name)
+      self.connection.columns(name)
     end
 
     def primary_keys
-      Pancakes.connection.primary_keys(name)
+      self.connection.primary_keys(name)
     end
 
     def insert(attributes)
-      Pancakes.connection.insert(name, attributes)
+      self.connection.insert(name, attributes)
     end
 
     def update(id, attributes)
-      Pancakes.connection.update(name, id, attributes)
+      self.connection.update(name, id, attributes)
     end
 
     def schema
-      Pancakes.connection.schema_query(name)
+      self.connection.schema_query(name)
     end
   end
 end

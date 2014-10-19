@@ -37,6 +37,13 @@ table {
       width: 100%;
       th {
         cursor: pointer;
+        white-space: nowrap;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
         .fa {
           padding-right: 4px;
         }
@@ -45,6 +52,9 @@ table {
     &.tables {
       td {
         max-width: 500px;
+        &[contenteditable=true]:focus {
+          background: #accef3;
+        }
       }
     }
   }
@@ -63,4 +73,77 @@ ul.pagination {
   &.no-padding {
     margin: 7px 0px 0px 0px;
   }
+}
+
+/* ANIMATIONS */
+.flash {
+  &.green-out {
+    -webkit-animation-name: flash-green;
+    -webkit-animation-duration: 900ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-out;
+  }
+  &.red-out {
+    -webkit-animation-name: flash-red;
+    -webkit-animation-duration: 900ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-out;
+  }
+  &.yellow-out {
+    -webkit-animation-name: flash-yellow;
+    -webkit-animation-duration: 900ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-out;
+  }
+}
+
+@-webkit-keyframes flash-green {
+    0% {
+        background-color: $brand-success;
+    }
+    100% {
+        background-color: #ffffff !important;
+    }
+}
+@keyframes flash-green {
+    0% {
+        background-color: $brand-success !important;
+    }
+    100% {
+        background-color: #ffffff;
+    }
+}
+
+@-webkit-keyframes flash-yellow {
+    0% {
+        background-color: $brand-warning;
+    }
+    100% {
+        background-color: #ffffff !important;
+    }
+}
+@keyframes flash-yellow {
+    0% {
+        background-color: $brand-warning !important;
+    }
+    100% {
+        background-color: #ffffff;
+    }
+}
+
+@-webkit-keyframes flash-red {
+    0% {
+        background-color: $brand-danger;
+    }
+    100% {
+        background-color: #ffffff !important;
+    }
+}
+@keyframes flash-red {
+    0% {
+        background-color: $brand-danger !important;
+    }
+    100% {
+        background-color: #ffffff;
+    }
 }

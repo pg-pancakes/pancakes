@@ -23,21 +23,35 @@ module Pancakes
 
   mattr_accessor :database_yml_path
   mattr_accessor :pancakes_yml_path
-  mattr_accessor :connection
   mattr_accessor :gateway
   mattr_accessor :gateway_port
   mattr_accessor :environments
+  mattr_accessor :connections
+  @@connections = {}
 
   ###############
   ### METHODS ###
   ###############
 
   def self.connect options={}
-    # Read configuration
-    environment = options[:database] || Rails.env
-    database_config = configurations[environment.to_s].merge(options)
+    environment = (options[:database] || Rails.env).to_s
+    @@connections[environment] ||= begin
+      database_config = configurations[environment.to_s].merge(options)
+      Pancakes::Connection.new(connection_hash(database_config))
+    end
+  end
 
-    connection_hash = {
+  def self.configurations
+    @@configurations ||= begin
+      database_yml = (File.exists?(database_yml_path) && YAML.load_file(database_yml_path)) || {}
+      pancakes_yml = (File.exists?(pancakes_yml_path) && YAML.load_file(pancakes_yml_path)) || {}
+      merged_yml = database_yml.merge(pancakes_yml)
+      merged_yml.slice *Pancakes.environments
+    end
+  end
+
+  def self.connection_hash(database_config)
+    {
       host:     database_config["host"],
       hostaddr: database_config["hostaddr"],
       port:     database_config["port"],
@@ -51,17 +65,5 @@ module Pancakes
       #gsslib: database_config["gsslib"],
       #service: database_config["service"]
     }
-
-    Pancakes.connection = Pancakes::Connection.new(connection_hash)
   end
-
-  def self.configurations
-    @configurations ||= begin
-      database_yml = (File.exists?(database_yml_path) && YAML.load_file(database_yml_path)) || {}
-      pancakes_yml = (File.exists?(pancakes_yml_path) && YAML.load_file(pancakes_yml_path)) || {}
-      merged_yml = database_yml.merge(pancakes_yml)
-      merged_yml.slice *Pancakes.environments
-    end
-  end
-
 end
