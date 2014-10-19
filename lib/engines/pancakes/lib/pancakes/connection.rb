@@ -78,7 +78,7 @@ module Pancakes
       exec("SELECT extname, extversion FROM pg_extension")
     end
 
-    def create_extension extension_name, options={}
+    def create_extension extension_name, params={}
       command = "CREATE EXTENSION"
       command += " IF NOT EXISTS" if params[:if_not_exists]
       command += " #{extension_name}"
@@ -89,7 +89,7 @@ module Pancakes
       exec(command)
     end
 
-    def drop_extension extension_name, options={}
+    def drop_extension extension_name, params={}
       command = "DROP EXTENSION"
       command += " IF EXISTS" if params[:if_not_exists]
       command += " #{extension_name}"
@@ -101,33 +101,33 @@ module Pancakes
       exec(command)
     end
 
-    def initialize_ssh options={}
-      unless options["database_port"]
-        options["database_port"] = 64999
+    def initialize_ssh params={}
+      unless params["database_port"]
+        params["database_port"] = 64999
         begin
-          server = TCPServer.new('127.0.0.1', options["database_port"])
+          server = TCPServer.new('127.0.0.1', params["database_port"])
           server.close
         rescue Errno::EADDRINUSE
-          options["database_port"] = rand(65000 - 1024) + 1024
+          params["database_port"] = rand(65000 - 1024) + 1024
           retry
         end
       end
 
       # Build SSH command
       command = "ssh -f"
-      command += " -#{options["force_version"]}" if options["force_version"]
-      command += " -#{options["ip_version"]}" if options["ip_version"]
-      command += " #{options["username"]}@#{options["host"]}"
-      command += " -L #{options["database_port"]}:#{options["host"]}:#{options["port"] || 22}"
-      command += " -p #{options["port"] || 22}"
+      command += " -#{params["force_version"]}" if params["force_version"]
+      command += " -#{params["ip_version"]}" if params["ip_version"]
+      command += " #{params["username"]}@#{params["host"]}"
+      command += " -L #{params["database_port"]}:#{params["host"]}:#{params["port"] || 22}"
+      command += " -p #{params["port"] || 22}"
       command += " -N"
 
       # Execute SSH command with password
-      command = "expect -c 'spawn #{command}; match_max 100000; expect \"*?assword:*\"; send -- \"#{options["password"]}\r\"; send -- \"\r\"; interact;'" if options["password"]
+      command = "expect -c 'spawn #{command}; match_max 100000; expect \"*?assword:*\"; send -- \"#{params["password"]}\r\"; send -- \"\r\"; interact;'" if params["password"]
       p = system command
       #binding.pry
 
-      self.forwarded_port = options["database_port"]
+      self.forwarded_port = params["database_port"]
     end
   end
 end

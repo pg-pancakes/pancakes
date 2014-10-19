@@ -7,5 +7,11 @@ module Pancakes
 			end
 		end
 
+    class EmptyQueryString < StandardError
+      def initialize
+        super "Empty query."
+      end
+    end
+
 	end
 end

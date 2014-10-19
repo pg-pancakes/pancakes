@@ -10,8 +10,9 @@ module Pancakes
 
     def query
       begin
+        raise Pancakes::Errors::EmptyQueryString.new if params[:sql_command].blank?
         @result = database.exec_query(params[:sql_command])
-      rescue PG::Error => e
+      rescue PG::Error, Pancakes::Errors::EmptyQueryString => e
         @error = e
       end
     end

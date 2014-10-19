@@ -11,6 +11,7 @@ module Pancakes
 
     def tables
       table_names = self.connection.tables
+      table_names.delete("schema_migrations")
       table_names.map { |table_name| Pancakes::Table.new(self, table_name) }
     end
 

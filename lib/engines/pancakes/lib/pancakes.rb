@@ -4,6 +4,7 @@ require "pancakes/engine"
 require "pancakes/connection"
 require "pancakes/database"
 require "pancakes/record"
+require "pancakes/errors"
 
 module Pancakes
 
