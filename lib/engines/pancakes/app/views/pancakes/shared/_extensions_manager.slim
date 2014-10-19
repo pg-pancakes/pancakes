@@ -9,17 +9,23 @@
         th Actions
     tbody
       - @database.connection.all_extensions.each do |column|
-        tr
+        tr class="extension-#{column['name']}"
           td= column['name']
           td= column['default_version']
-          td= column['installed_version']
+          td.installed-version = column['installed_version']
           td= column['comment']
           td
             - unless column['installed_version']
-              = link_to database_extensions_path(name: column['name']), method: :post, class: "btn btn-success btn-xs" do
+              = link_to database_extensions_path(name: column['name']), method: :post, remote: true, class: "btn btn-success btn-xs" do
                   i.fa.fa-download
                   |Install
+              = link_to database_extension_path(id: column['name']), method: :delete, remote: true, class: "btn btn-danger btn-xs hidden" do
+                  i.fa.fa-close
+                  |Uninstall
             - else
-              = link_to database_extension_path(id: column['name']), method: :delete, class: "btn btn-danger btn-xs" do
+              = link_to database_extensions_path(name: column['name']), method: :post, remote: true, class: "btn btn-success btn-xs hidden" do
+                  i.fa.fa-download
+                  |Install
+              = link_to database_extension_path(id: column['name']), method: :delete, remote: true, class: "btn btn-danger btn-xs" do
                   i.fa.fa-close
                   |Uninstall

@@ -61,11 +61,11 @@ table {
             background: #accef3;
           }
         }
-        .flash {
-          &:hover {
-            background-color: transparent;
-          }
-        }
+      }
+    }
+    .flash {
+      &:hover td {
+        background-color: transparent;
       }
     }
   }

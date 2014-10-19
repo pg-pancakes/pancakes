@@ -3,16 +3,16 @@ module Pancakes
 
     def create
       database.connection.create_extension(params[:name], if_not_exists: true)
-      render json: { installed: true, version: database.connection.extension_installed_version(params[:name]) }
+      @success = true
     rescue PG::UndefinedFile
-      render json: { installed: false }
+      @success = false
     end
 
     def destroy
-      r = database.connection.drop_extension(params[:id])
-      render json: { installed: true }
+      database.connection.drop_extension(params[:id])
+      @success = true
     rescue PG::UndefinedObject
-      render json: { uninstalled: false }
+      @success = false
     end
 
     private
