@@ -9,7 +9,7 @@ module Pancakes
     end
 
     def query
-      fail Pancakes::Errors::EmptyQueryString.new if params[:sql_command].blank?
+      fail(Pancakes::Errors::InvalidQuery, params[:sql_command]) if params[:sql_command].blank?
       @result = database.exec_query(params[:sql_command])
     rescue PG::Error, Pancakes::Errors::EmptyQueryString => e
       @error = e

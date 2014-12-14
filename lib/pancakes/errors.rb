@@ -7,9 +7,11 @@ module Pancakes
       end
     end
 
-    class EmptyQueryString < StandardError
-      def initialize
-        super 'Empty query.'
+    class InvalidQuery < StandardError
+      def initialize(query, msg = 'is invalid')
+        msg = "#{query} #{msg}."
+        msg = 'Query is empty!' if query.blank?
+        super
       end
     end
 
