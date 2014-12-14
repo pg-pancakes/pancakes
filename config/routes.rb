@@ -1,9 +1,14 @@
-Rails.application.routes.draw do
-  root to: "public#landing"
+Pancakes::Engine.routes.draw do
+  root to: redirect("databases")
 
-  get "landing", to: "public/landing"
-  resources :posts
-  resources :users
+  resources :databases do
+    member do
+      post :query
+    end
+    resources :tables do
+      resources :records
+    end
+    resources :extensions, only: [:create, :destroy]
+  end
 
-  mount Pancakes::Engine, at: "/pg"
 end

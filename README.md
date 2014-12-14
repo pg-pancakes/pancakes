@@ -1,1 +1,0 @@
-Development: run ./bin/setup
