@@ -105,33 +105,5 @@ module Pancakes
       exec("SELECT installed_version FROM pg_available_extensions WHERE name LIKE '#{extension_name}'").values.flatten.first
     end
 
-    def initialize_ssh params={}
-      unless params["database_port"]
-        params["database_port"] = 64999
-        begin
-          server = TCPServer.new('127.0.0.1', params["database_port"])
-          server.close
-        rescue Errno::EADDRINUSE
-          params["database_port"] = rand(65000 - 1024) + 1024
-          retry
-        end
-      end
-
-      # Build SSH command
-      command = "ssh -f"
-      command += " -#{params["force_version"]}" if params["force_version"]
-      command += " -#{params["ip_version"]}" if params["ip_version"]
-      command += " #{params["username"]}@#{params["host"]}"
-      command += " -L #{params["database_port"]}:#{params["host"]}:#{params["port"] || 22}"
-      command += " -p #{params["port"] || 22}"
-      command += " -N"
-
-      # Execute SSH command with password
-      command = "expect -c 'spawn #{command}; match_max 100000; expect \"*?assword:*\"; send -- \"#{params["password"]}\r\"; send -- \"\r\"; interact;'" if params["password"]
-      p = system command
-      #binding.pry
-
-      self.forwarded_port = params["database_port"]
-    end
   end
 end
