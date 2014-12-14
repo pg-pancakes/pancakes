@@ -1,4 +1,4 @@
-require_dependency "pancakes/application_controller"
+require_dependency 'pancakes/application_controller'
 
 module Pancakes
   class RecordsController < ApplicationController

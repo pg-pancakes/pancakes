@@ -5,10 +5,10 @@ module Pancakes
       @table   = @tables.find { |table| table.name == params[:id] }
 
       @records = if sorting_and_pagination_params.any?
-        @table.sorted_records(sorting_and_pagination_params)
-      else
-        @table.records
-      end
+                   @table.sorted_records(sorting_and_pagination_params)
+                 else
+                   @table.records
+                 end
 
       @columns = @table.columns
       @schema  = @table.schema
