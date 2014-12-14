@@ -20,9 +20,15 @@ To override the default settings modify the `config/pancakes.yml` file.
 
 ## Contributing
 If you would like to contribute to this project:
+
 1. Ensure you have a Postgress database on which you can run tests on
+
 2. Fork the project
+
 3. Add/modify the code
+
 4. Write tests for any modifications you make
+
 5. Make sure all tests pass
+
 6. Issue a pull request
