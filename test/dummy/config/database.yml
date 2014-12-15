@@ -7,13 +7,13 @@ default: &default
 
 development:
   <<: *default
-  database: kerohu_development
+  database: pancakes_development
   password:
 
 test:
   <<: *default
-  database: kerohu_test
+  database: pancakes_test
 
 production:
   <<: *default
-  database: kerohu_production
+  database: pancakes_production
