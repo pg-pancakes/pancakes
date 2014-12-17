@@ -16,16 +16,11 @@ module Pancakes
     yield self
   end
 
-  mattr_accessor :standalone
-  @@standalone = false
-
   mattr_accessor :ssh_credentials
   @@ssh_credentials = {}
 
   mattr_accessor :database_yml_path
   mattr_accessor :pancakes_yml_path
-  mattr_accessor :gateway
-  mattr_accessor :gateway_port
   mattr_accessor :environments
   mattr_accessor :connections
   @@connections = {}
@@ -44,8 +39,8 @@ module Pancakes
 
   def self.configurations
     @@configurations ||= begin
-      database_yml = (File.exist?(database_yml_path) && YAML.load_file(database_yml_path)) || {}
-      pancakes_yml = (File.exist?(pancakes_yml_path) && YAML.load_file(pancakes_yml_path)) || {}
+      database_yml = load_yaml_file(database_yml_path)
+      pancakes_yml = load_yaml_file(pancakes_yml_path)
       merged_yml = database_yml.merge(pancakes_yml)
       merged_yml.slice(*Pancakes.environments)
     end
@@ -60,11 +55,17 @@ module Pancakes
       user:     database_config['username'],
       password: database_config['password'],
       # connection_timeout: database_config['timeout'],
-      # options: database_config['options'],
-      # tty: database_config['tty'],
-      # sslmode: database_config['sslmode'],
-      # gsslib: database_config['gsslib'],
-      # service: database_config['service']
+      # options:            database_config['options'],
+      # tty:                database_config['tty'],
+      # sslmode:            database_config['sslmode'],
+      # gsslib:             database_config['gsslib'],
+      # service:            database_config['service']
     }
+  end
+
+  private
+
+  def self.load_yaml_file(file_path)
+    File.exist?(file_path) ? YAML.load_file(file_path) : {}
   end
 end

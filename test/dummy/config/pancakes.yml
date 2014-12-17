@@ -1,6 +1,5 @@
 production:
-  database: "d9ehbqk013tk2k"
-  host: "ec2-54-83-9-127.compute-1.amazonaws.com"
+  database: "pancakes_production"
+  host: "localhost"
   port: 5432
-  username: "dvieyhljzydtrl"
-  password: "FGf6UnBL9NY_foa1s2fMHhvF5v"
+  username: "postgres"
