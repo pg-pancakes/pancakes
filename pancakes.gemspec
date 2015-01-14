@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.email       = authors.values
   s.homepage    = 'https://github.com/pg-pancakes/pancakes'
   s.summary     = 'In browser database managment tool for Postgres databases'
-  s.description = 'In browser database managment tool for Postgres databases.'\
-                  'View your app\'s database right from your browser.'
+  s.description = 'View your app\'s database for every environment right from '\
+                  'your browser.'
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*',
@@ -37,4 +37,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'font-awesome-sass'
 
   s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'factory_girl_rails'
 end
