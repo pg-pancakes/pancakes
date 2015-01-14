@@ -1,9 +1,8 @@
 module Pancakes
   module Errors
-
     class NoConnection < StandardError
       def initialize
-        super 'No connection was found! Try calling Pancakes::Database.connect first.'
+        super('No connection was found! Try calling Pancakes::Database.connect first.')
       end
     end
 
@@ -11,9 +10,8 @@ module Pancakes
       def initialize(query, msg = 'is invalid')
         msg = "#{query} #{msg}."
         msg = 'Query is empty!' if query.blank?
-        super
+        super(msg)
       end
     end
-
   end
 end
